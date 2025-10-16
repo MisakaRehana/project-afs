@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ProjectAFS.Core/Internal/UI/WinLanguageSelect.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Core/Internal/UI/WinMain.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Core/Internal/Windows/WinLanguageSelect.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Core/Internal/Windows/WinMain.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Launcher.Desktop/Windows/WinSplash.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Launcher/Windows/WinSplash.axaml" value="ProjectAFS.Launcher/ProjectAFS.Launcher.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <StartupObject>ProjectAFS.Launcher.Desktop.Program</StartupObject>
+        <RootNamespace>ProjectAFS.Launcher.Desktop</RootNamespace>
+        <AssemblyTitle>project-afs Desktop Launcher</AssemblyTitle>
+        <Company>Misaka Castle and project-afs contributors</Company>
+        <Copyright>(C)Copyright 2018-2025 Misaka Castle and project-afs contributors</Copyright>
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.3.7" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.7" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.7" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Dock.Avalonia" Version="11.3.6.4" />
+        <PackageReference Include="Dock.Model.Mvvm" Version="11.3.6.4" />
+        <PackageReference Include="Dock.Serializer.Newtonsoft" Version="11.3.6.4" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ProjectAFS.Core\ProjectAFS.Core.csproj" />
+    </ItemGroup>
+
+</Project>

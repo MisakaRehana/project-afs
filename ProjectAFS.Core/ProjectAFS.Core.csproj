@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RootNamespace>ProjectAFS.Core</RootNamespace>
+        <AssemblyTitle>project-afs Core Library</AssemblyTitle>
+        <Company>Misaka Castle and project-afs contributors</Company>
+        <Copyright>(C)Copyright 2018-2025 Misaka Castle and project-afs contributors</Copyright>
+        <Version>0.1.0</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="11.3.7" />
+      <PackageReference Include="Avalonia.Desktop" Version="11.3.7" />
+      <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.7" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+      <PackageReference Include="ReactiveUI" Version="22.1.1" />
+      <PackageReference Include="SemanticVersioning" Version="3.0.0" />
+      <PackageReference Include="SharpZipLib" Version="1.4.2" />
+      <PackageReference Include="Dock.Avalonia" Version="11.3.6.4" />
+      <PackageReference Include="Dock.Model.Mvvm" Version="11.3.6.4" />
+      <PackageReference Include="Dock.Serializer.Newtonsoft" Version="11.3.6.4" />
+      <PackageReference Include="System.Reactive" Version="6.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ProjectAFS.Extensibility\ProjectAFS.Extensibility.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Resources\libNativeMessageBox.dylib">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

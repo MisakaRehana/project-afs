@@ -1,0 +1,5 @@
+﻿<Solution>
+  <Project Path="ProjectAFS.Core\ProjectAFS.Core.csproj" Type="Classic C#" />
+  <Project Path="ProjectAFS.Extensibility\ProjectAFS.Extensibility.csproj" Type="Classic C#" />
+  <Project Path="ProjectAFS.Launcher.Desktop\ProjectAFS.Launcher.Desktop.csproj" Type="Classic C#" />
+</Solution>

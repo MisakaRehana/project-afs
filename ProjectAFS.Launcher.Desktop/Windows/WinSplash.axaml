@@ -1,0 +1,65 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://github.com/avaloniaui"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="ProjectAFS.Launcher.Desktop.Windows.WinSplash"
+        Title="project-afs"
+        Width="750"
+        Height="400">
+
+    <Grid RowDefinitions="*,Auto,Auto">
+        <!-- Title -->
+        <TextBlock Grid.Row="0"
+                   Text="project-afs"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   FontSize="50"
+                   FontFamily="Sriracha"
+                   Margin="20,0,0,0"
+                   Foreground="DarkOrange" />
+
+        <!-- Author -->
+        <StackPanel Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,20,10">
+            <TextBlock Text="Made by"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       FontSize="25"
+                       FontFamily="SetoFont"
+                       Foreground="DodgerBlue" />
+            <TextBlock Text="Misaka Castle"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Bottom"
+                       FontSize="32"
+                       FontFamily="SetoFont"
+                       Foreground="DodgerBlue" />
+        </StackPanel>
+
+        <!-- Footer -->
+        <Grid Grid.Row="2"
+              x:Name="Grd_FooterLoading"
+              IsVisible="True"
+              Margin="0,0,0,0"
+              RowDefinitions="Auto,Auto">
+            <TextBlock Grid.Row="0"
+                       FontSize="16"
+                       FontFamily="SetoFont"
+                       Foreground="Gray"
+                       HorizontalAlignment="Left"
+                       Margin="10,0,0,5"
+                       Text="ちょっとだけ待ってて、もうすぐ終わるよ！(14/15)" />
+            <ProgressBar Grid.Row="1"
+                         x:Name="Pgbr_Loading"
+                         Height="20"
+                         HorizontalAlignment="Stretch"
+                         Foreground="DodgerBlue"
+                         Background="LightGray"
+                         IsIndeterminate="False"
+                         Minimum="0"
+                         Maximum="15"
+                         Value="14" />
+        </Grid>
+    </Grid>
+</Window>
