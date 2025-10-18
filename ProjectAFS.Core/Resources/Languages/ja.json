@@ -1,0 +1,23 @@
+{
+	"language": {
+		"lang_code": "ja",
+		"disp_name": "日本語"
+	},
+	"strings": {
+		"splash.init.host": {
+			"value": "project-afs の初期化 ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "プラグイン {pluginName} の初期化 ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "プラグイン {pluginId} のインストール ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "プラグイン {pluginId} のアンインストール ({curr}/{total})"
+		},
+		"splash.init.complete": {
+			"value": "完了間近 ({curr}/{total})"
+		}
+	}
+}

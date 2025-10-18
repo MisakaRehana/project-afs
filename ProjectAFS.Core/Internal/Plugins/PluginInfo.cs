@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using ProjectAFS.Core.I18n;
+using ProjectAFS.Core.Data.Localization;
 using Version = SemanticVersioning.Version;
 
 namespace ProjectAFS.Core.Internal.Plugins;

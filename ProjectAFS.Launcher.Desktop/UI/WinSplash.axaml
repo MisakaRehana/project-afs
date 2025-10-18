@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://github.com/avaloniaui"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:ProjectAFS.Core.Data.Localization;assembly=ProjectAFS.Core"
         mc:Ignorable="d"
         x:Class="ProjectAFS.Launcher.Desktop.Windows.WinSplash"
         Title="project-afs"
@@ -44,22 +45,23 @@
               Margin="0,0,0,0"
               RowDefinitions="Auto,Auto">
             <TextBlock Grid.Row="0"
+                       x:Name="Tbk_StatusText"
                        FontSize="16"
                        FontFamily="SetoFont"
                        Foreground="Gray"
                        HorizontalAlignment="Left"
                        Margin="10,0,0,5"
-                       Text="ちょっとだけ待ってて、もうすぐ終わるよ！(14/15)" />
+                       Text="{l:Localized Key='splash.init.host',DesignTime='ちょっとだけ待ってて、もうすぐ終わるよ！(14/15)'}"/>
             <ProgressBar Grid.Row="1"
                          x:Name="Pgbr_Loading"
                          Height="20"
                          HorizontalAlignment="Stretch"
                          Foreground="DodgerBlue"
                          Background="LightGray"
-                         IsIndeterminate="False"
+                         IsIndeterminate="True"
                          Minimum="0"
                          Maximum="15"
-                         Value="14" />
+                         Value="5" />
         </Grid>
     </Grid>
 </Window>

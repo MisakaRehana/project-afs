@@ -1,4 +1,4 @@
-using ProjectAFS.Core.I18n;
+using ProjectAFS.Core.Data.Localization;
 
 namespace ProjectAFS.Core.Abstractions.Localization;
 

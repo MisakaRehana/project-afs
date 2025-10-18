@@ -13,6 +13,7 @@ using ProjectAFS.Core.Abstractions.Configuration;
 using ProjectAFS.Core.Abstractions.Localization;
 using ProjectAFS.Core.Abstractions.Logging;
 using ProjectAFS.Core.Utility.Collections;
+using ProjectAFS.Core.Utility.Services;
 using ProjectAFS.Extensibility.Abstractions.Plugins;
 
 namespace ProjectAFS.Core.Internal.Plugins;
@@ -20,6 +21,7 @@ namespace ProjectAFS.Core.Internal.Plugins;
 /// <summary>
 /// Represents the manager responsible for handling project-afs IDE plugins.
 /// </summary>
+[DefaultImplementation(typeof(IPluginManager))]
 public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisposable, IAsyncDisposable
 {
 	private const string ManifestFileName = "plugin.json";
@@ -38,6 +40,7 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 	private readonly ConcurrentDictionary<string, ConcurrentBag<II18nExtensibleLocalizationLocator>> _pluginI18nLocators = new();
 	private bool _isDisposed;
 
+	public event EventHandler<PluginEventArgs>? PluginLoading; 
 	public event EventHandler<PluginEventArgs>? PluginLoaded;
 	public event EventHandler<PluginEventArgs>? PluginUnloaded;
 	public event EventHandler<PluginEventArgs>? PluginInstallationScheduled;
@@ -53,6 +56,27 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 		Directory.CreateDirectory(_pluginsDir);
 		Directory.CreateDirectory(_stagingDir);
 		LoadEnabledPluginsConfiguration();
+	}
+	
+	public async ValueTask<bool> HasAvailablePluginsAsync(CancellationToken cancellationToken = default)
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+		cancellationToken.ThrowIfCancellationRequested();
+		string[] pluginPackages = Directory.GetFiles(_pluginsDir, $"*{PluginExt}", SearchOption.TopDirectoryOnly);
+		foreach (string packagePath in pluginPackages)
+		{
+			try
+			{
+				using var zipFile = new ZipFile(packagePath);
+				var manifestEntry = zipFile.GetEntry("plugin.json");
+				if (manifestEntry == null) continue;
+				using var reader = new StreamReader(zipFile.GetInputStream(manifestEntry), Encoding.UTF8);
+				var manifest = JsonConvert.DeserializeObject<PluginInfo>(await reader.ReadToEndAsync(cancellationToken));
+				return manifest != null;
+			}
+			catch { /* ignore invalid zip */ }
+		}
+		return false;
 	}
 	
 	public IEnumerable<PluginInfo> DiscoverPlugins()
@@ -98,10 +122,13 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 		}
 		return _plugins.Values.Select(p => p.Info);
 	}
-	public async Task LoadPluginsAsync(CancellationToken cancellationToken = default)
+	public async Task LoadPluginsAsync(bool skipDiscovering = false, CancellationToken cancellationToken = default)
 	{
 		ObjectDisposedException.ThrowIf(_isDisposed, this);
-		DiscoverPlugins();
+		if (!skipDiscovering)
+		{
+			DiscoverPlugins();
+		}
 		var pluginsToLoad = GetPluginsInDependencyOrder();
 
 		foreach (var plugin in pluginsToLoad)
@@ -112,6 +139,7 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 			await LoadSinglePluginAsync(plugin.Id, cancellationToken);
 		}
 	}
+	
 	public async Task UnloadPluginAsync(string pluginId, CancellationToken cancellationToken = default)
 	{
 		ObjectDisposedException.ThrowIf(_isDisposed, this);
@@ -319,6 +347,10 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 			}
 
 			ctx.SetStatus(PluginStatus.Loading);
+			PluginLoading?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Loading)
+			{
+				PluginName = ctx.Info.Name
+			});
 
 			var alc = new PluginAssemblyLoadContext(ctx.Info.InstallPath);
 			var assembly = alc.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(ctx.EntryAssembly)));
@@ -375,7 +407,10 @@ public class PluginManager : IPluginManager, ILoggerClient<PluginManager>, IDisp
 			ctx.SetLoadContext(alc);
 			ctx.RegisterInstance(pluginInstance);
 			ctx.SetStatus(PluginStatus.Enabled);
-			PluginLoaded?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Enabled));
+			PluginLoaded?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Enabled)
+			{
+				PluginName = ctx.Info.Name
+			});
 		}
 		catch (Exception ex)
 		{

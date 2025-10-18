@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net8.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <StartupObject>ProjectAFS.Launcher.Desktop.Program</StartupObject>
@@ -26,6 +26,10 @@
 
     <ItemGroup>
         <ProjectReference Include="..\ProjectAFS.Core\ProjectAFS.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Utility\" />
     </ItemGroup>
 
 </Project>

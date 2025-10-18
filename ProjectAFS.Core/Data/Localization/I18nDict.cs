@@ -1,9 +1,8 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace ProjectAFS.Core.I18n;
+namespace ProjectAFS.Core.Data.Localization;
 
-[JsonDictionary]
 public class I18nDict
 {
 	[JsonProperty("language")] public I18nLanguage Language { get; init; }

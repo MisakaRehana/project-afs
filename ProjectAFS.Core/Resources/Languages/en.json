@@ -1,0 +1,23 @@
+{
+	"language": {
+		"lang_code": "en",
+		"disp_name": "English"
+	},
+	"strings": {
+		"splash.init.host": {
+			"value": "Initializing project-afs ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "Initializing plugin {pluginName} ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "Installing plugin {pluginId} ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "Uninstalling plugin {pluginId} ({curr}/{total})"
+		},
+		"splash.init.complete": {
+			"value": "Almost done ({curr}/{total})"
+		}
+	}
+}

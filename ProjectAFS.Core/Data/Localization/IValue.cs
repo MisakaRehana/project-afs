@@ -1,7 +1,8 @@
 using Newtonsoft.Json;
 using ProjectAFS.Core.Utility.Json;
+using SmartFormat;
 
-namespace ProjectAFS.Core.I18n;
+namespace ProjectAFS.Core.Data.Localization;
 
 [JsonObject]
 public readonly record struct IValue(
@@ -34,4 +35,21 @@ public readonly record struct IValue(
 	public static explicit operator IValue(string value) => new IValue(value);
 	
 	public static IValue Empty(string id) => new($"[{id}]");
+	
+	/// <summary>
+	/// Formats the value string. Supports both positional and named arguments.
+	/// </summary>
+	/// <param name="args">Positional or named arguments (anonymous object).</param>
+	/// <returns>The formatted <see cref="IValue"/> string.</returns>
+	public string Format(params object?[] args)
+	{
+		if (args is [not string and not IEnumerable<object>])
+		{
+			return Smart.Format(Value, args[0]!);
+		}
+		else
+		{
+			return Smart.Format(Value, args);
+		}
+	}
 }

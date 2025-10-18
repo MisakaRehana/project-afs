@@ -4,6 +4,20 @@
 		"disp_name": "简体中文"
 	},
 	"strings": {
-		"
+		"splash.init.host": {
+			"value": "初始化 project-afs ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "初始化插件 {pluginName} ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "安装插件 {pluginId} ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "卸载插件 {pluginId} ({curr}/{total})"
+		},
+		"splash.init.finalizing": {
+			"value": "即将完成 ({curr}/{total})"
+		}
 	}
 }

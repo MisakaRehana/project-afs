@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Reactive;
 using ProjectAFS.Core.Abstractions.Localization;
-using ProjectAFS.Core.I18n;
+using ProjectAFS.Core.Data.Localization;
 using ReactiveUI;
 
 namespace ProjectAFS.Core.Internal.ViewModels.UI;

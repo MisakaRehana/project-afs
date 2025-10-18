@@ -1,26 +1,35 @@
 using System.Collections.Concurrent;
+using Microsoft.Extensions.DependencyInjection;
 using ProjectAFS.Core.Abstractions.Configuration;
 using ProjectAFS.Core.Abstractions.Localization;
-using ProjectAFS.Core.I18n;
+using ProjectAFS.Core.Data.Localization;
+using ProjectAFS.Core.Utility.Services;
 
 namespace ProjectAFS.Core.Internal.I18n;
 
+/// <summary>
+/// Represents the internationalization (i18n) manager responsible for handling multiple languages and localized strings.
+/// </summary>
+[DefaultImplementation(typeof(II18nManager), typeof(II18nExtensibleManager))]
 public class I18nManager : II18nManager, II18nExtensibleManager
 {
 	public IValue this[string key] => GetValue(key);
+	public string this[string key, params object?[] args] => GetValue(key).Format(args);
 	public I18nDict CurrentLanguage => _languages.TryGetValue(_currentLangId, out var dict) ? dict : _languages["en"];
+	public event EventHandler<LanguageChangedEventArgs>? LanguageChanged;
 	private readonly ConcurrentDictionary<I18nLanguage, I18nDict> _languages = [];
 	private readonly ConcurrentDictionary<string, LocalizedString> _extLocalizations = [];
 	private readonly ConcurrentBag<II18nExtensibleLocalizationLocator> _extLocators = [];
 	private string _currentLangId = "en";
 	private readonly string _i18nPath;
 	
+	[ActivatorUtilitiesConstructor]
 	public I18nManager(IPathOptions pathOptions)
 	{
 		_i18nPath = pathOptions.I18nLanguagePath;
 	}
 	
-	public I18nManager(IEnumerable<I18nDict> mockLanguages)
+	internal I18nManager(IEnumerable<I18nDict> mockLanguages)
 	{
 		_i18nPath = string.Empty;
 		foreach (var dict in mockLanguages)
@@ -45,7 +54,9 @@ public class I18nManager : II18nManager, II18nExtensibleManager
 	{
 		if (_languages.ContainsKey(lang))
 		{
+			var oldLang = CurrentLanguage.Language;
 			_currentLangId = lang.LangCode;
+			LanguageChanged?.Invoke(this, new LanguageChangedEventArgs() { OldLanguage = oldLang, NewLanguage = CurrentLanguage.Language });
 		}
 		else
 		{
@@ -77,6 +88,10 @@ public class I18nManager : II18nManager, II18nExtensibleManager
 		if (_languages.TryGetValue(srcLang, out var dict) && dict.Strings.TryGetValue(key, out var value))
 		{
 			return value;
+		}
+		if (srcLang.LangCode != "en" && _languages.TryGetValue("en", out var enDict) && enDict.Strings.TryGetValue(key, out var enValue))
+		{
+			return enValue;
 		}
 		return IValue.Empty(key);
 	}

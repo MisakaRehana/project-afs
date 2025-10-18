@@ -1,7 +1,6 @@
-using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace ProjectAFS.Core.I18n;
+namespace ProjectAFS.Core.Data.Localization;
 
 /// <summary>
 /// Represents a language supported by the internationalization (i18n) system.

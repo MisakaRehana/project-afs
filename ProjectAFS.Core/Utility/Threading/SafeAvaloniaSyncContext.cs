@@ -1,6 +1,6 @@
 using Avalonia.Threading;
 
-namespace ProjectAFS.Launcher.Desktop.Utils;
+namespace ProjectAFS.Core.Utility.Threading;
 
 public class SafeAvaloniaSyncContext : SynchronizationContext
 {

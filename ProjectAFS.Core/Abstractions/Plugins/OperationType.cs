@@ -1,4 +1,4 @@
-namespace ProjectAFS.Core.Internal.Plugins;
+namespace ProjectAFS.Core.Abstractions.Plugins;
 
 public enum OperationType
 {

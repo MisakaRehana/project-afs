@@ -1,14 +1,19 @@
+using System.Runtime.CompilerServices;
 using System.Text;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstractions.Configuration;
 using ProjectAFS.Core.Abstractions.Plugins;
+using ProjectAFS.Core.Utility.Services;
 
 namespace ProjectAFS.Core.Internal.Plugins;
 
+[DefaultImplementation(typeof(IPluginInstaller))]
 public class PluginInstaller : IPluginInstaller
 {
+	public event EventHandler<InstallerOperation>? ExecutingOperation;
+	
 	private readonly static SemaphoreSlim ManifestLock = new(1, 1);
 	private readonly ILogger<PluginInstaller> _logger;
 	private readonly string _pluginsDir;
@@ -24,6 +29,53 @@ public class PluginInstaller : IPluginInstaller
 		_installManifestPath = pathOptions.PluginPendingStateFileName;
 		_pluginManifestName = pathOptions.PluginManifestFileName;
 		Task.Run(() => ExecutePendingOperationsAsync()); // no await
+	}
+	
+	public async IAsyncEnumerable<InstallerOperation> GetPendingInstallationsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+	{
+		string manifestFullPath = Path.Combine(_stagingDir, _installManifestPath);
+		if (!File.Exists(manifestFullPath))
+		{
+			yield break;
+		}
+
+		await ManifestLock.WaitAsync(cancellationToken);
+		try
+		{
+			var operations = JsonConvert.DeserializeObject<List<InstallerOperation>>(
+				await File.ReadAllTextAsync(manifestFullPath, Encoding.UTF8, cancellationToken)) ?? [];
+			foreach (var op in operations.Where(op => op.Type == OperationType.Install))
+			{
+				yield return op;
+			}
+		}
+		finally
+		{
+			ManifestLock.Release();
+		}
+	}
+	public async IAsyncEnumerable<InstallerOperation> GetPendingUninstallationsAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+	{
+		string manifestFullPath = Path.Combine(_stagingDir, _installManifestPath);
+		if (!File.Exists(manifestFullPath))
+		{
+			yield break;
+		}
+
+		await ManifestLock.WaitAsync(cancellationToken);
+		try
+		{
+			var operations = JsonConvert.DeserializeObject<List<InstallerOperation>>(
+				await File.ReadAllTextAsync(manifestFullPath, Encoding.UTF8, cancellationToken)) ?? [];
+			foreach (var op in operations.Where(op => op.Type == OperationType.Uninstall))
+			{
+				yield return op;
+			}
+		}
+		finally
+		{
+			ManifestLock.Release();
+		}
 	}
 
 	public async Task ScheduleInstallAsync(string srcPackagePath, string dstPackagePath, CancellationToken cancellationToken = default)
@@ -126,7 +178,9 @@ public class PluginInstaller : IPluginInstaller
 				_logger.LogDebug("No pending plugin operations found in manifest.");
 				return;
 			}
-			foreach (var operation in pendingInstallations.OrderBy(i => i.ScheduledAtUtc))
+			var execOrder = new[] { OperationType.Uninstall, OperationType.Install }; // first uninstall, then install
+			foreach (var operation in pendingInstallations.OrderBy(o => Array.IndexOf(execOrder, o.Type))
+				         .ThenBy(o => o.ScheduledAtUtc))
 			{
 				ExecuteSinglePendingOperation(operation);
 			}
@@ -149,6 +203,7 @@ public class PluginInstaller : IPluginInstaller
 		{
 			case OperationType.Install:
 			{
+				ExecutingOperation?.Invoke(this, operation);
 				_logger.LogInformation("Installing plugin from '{SourcePath}' to '{DestinationPath}'", operation.SourcePath, operation.DestinationPath);
 				if (!File.Exists(operation.SourcePath))
 				{
@@ -168,6 +223,7 @@ public class PluginInstaller : IPluginInstaller
 			}
 			case OperationType.Uninstall:
 			{
+				ExecutingOperation?.Invoke(this, operation);
 				_logger.LogInformation("Uninstalling plugin at '{PackagePath}'", operation.DestinationPath);
 				if (File.Exists(operation.DestinationPath))
 				{

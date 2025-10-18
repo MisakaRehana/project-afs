@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace ProjectAFS.Core.I18n;
+namespace ProjectAFS.Core.Data.Localization;
 
 [Serializable, JsonObject]
 public record struct LocalizedString

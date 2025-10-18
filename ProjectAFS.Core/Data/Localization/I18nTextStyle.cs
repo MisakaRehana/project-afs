@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace ProjectAFS.Core.I18n;
+namespace ProjectAFS.Core.Data.Localization;
 
 public enum I18nTextStyle
 {

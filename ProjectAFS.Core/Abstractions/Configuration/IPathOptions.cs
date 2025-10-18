@@ -15,12 +15,3 @@ public interface IPathOptions
 	string PluginStateFileName { get; }
 	string PluginPendingStateFileName { get; }
 }
-
-public interface IAFSConfiguration
-{
-	Dictionary<string, object> AppSettings { get; }
-
-	T GetValue<T>(string key);
-	
-	object this[string key] { get; set; }
-}

@@ -6,7 +6,8 @@ namespace ProjectAFS.Core.Abstractions.Plugins;
 public interface IPluginManager
 {
 	// Lifetime Management
-	Task LoadPluginsAsync(CancellationToken cancellationToken = default);
+	ValueTask<bool> HasAvailablePluginsAsync(CancellationToken cancellationToken = default);
+	Task LoadPluginsAsync(bool skipDiscovering = false, CancellationToken cancellationToken = default);
 	Task UnloadPluginAsync(string pluginId, CancellationToken cancellationToken = default);
 	
 	// Discovery & Enumeration
@@ -28,6 +29,7 @@ public interface IPluginManager
 	AssemblyLoadContext GetPluginLoadContext(string pluginId);
 	
 	// Events
+	event EventHandler<PluginEventArgs> PluginLoading;
 	event EventHandler<PluginEventArgs> PluginLoaded;
 	event EventHandler<PluginEventArgs> PluginUnloaded;
 	event EventHandler<PluginEventArgs> PluginInstallationScheduled;

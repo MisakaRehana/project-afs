@@ -7,6 +7,7 @@
         <entry key="ProjectAFS.Core/Internal/UI/WinMain.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Core/Internal/Windows/WinLanguageSelect.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Core/Internal/Windows/WinMain.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Launcher.Desktop/UI/WinSplash.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Launcher.Desktop/Windows/WinSplash.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Launcher/Windows/WinSplash.axaml" value="ProjectAFS.Launcher/ProjectAFS.Launcher.csproj" />
       </map>

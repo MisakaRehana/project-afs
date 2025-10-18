@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectAFS.Core.Abstractions;
 using ProjectAFS.Core.Abstractions.UI;
-using ProjectAFS.Launcher.Desktop.Utils;
+using ProjectAFS.Core.Utility.Threading;
 using ProjectAFS.Launcher.Desktop.Windows;
 
 namespace ProjectAFS.Launcher.Desktop;
@@ -41,8 +41,6 @@ public class AFSApp : Application, IHostingAvaloniaDesktopApp
 			{
 				return;
 			}
-
-			AFSDispatcher.Init(Dispatcher.UIThread);
 
 			DesktopAppLifetime.ShutdownMode = ShutdownMode.OnExplicitShutdown;
 			DesktopAppLifetime.MainWindow = null;
