@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:ProjectAFS.Core.MarkupExtensions.Globalization"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ProjectAFS.Core.UI.WinSplash"
+        Title="project-afs" Width="800" Height="450">
+	
+	<Grid RowDefinitions="*,Auto,Auto">
+		<!-- Title -->
+		<TextBlock Grid.Row="0" Margin="20,0,0,0"
+		           HorizontalAlignment="Left" VerticalAlignment="Top"
+		           FontSize="50" FontFamily="Sriracha" Foreground="DarkOrange"
+		           Text="project-afs" />
+		
+		<!-- Author -->
+		<StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,10">
+			<TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom"
+			           FontSize="25" FontFamily="SetoFont" Foreground="DodgerBlue"
+			           Text="Made by" />
+			<TextBlock HorizontalAlignment="Right" VerticalAlignment="Bottom"
+			           FontSize="32" FontFamily="SetoFont" Foreground="DodgerBlue"
+			           Text="Misaka Castle" />
+		</StackPanel>
+		
+		<!-- Footer -->
+		<Grid Grid.Row="2" x:Name="Grd_FooterLoading"
+		      IsVisible="True" Margin="0,0,0,0"
+		      RowDefinitions="Auto,Auto">
+			<TextBlock Grid.Row="0" Margin="10,0,0,5" x:Name="Tbk_StatusText"
+			           FontSize="16" FontFamily="SetoFont"
+			           Foreground="Gray" HorizontalAlignment="Left"
+			           Text="{l:Localized Key='splash.init.host',DesignTime='ちょっとだけ待ってて、もうすぐ終わるよ！ (14/15)'}" />
+			<ProgressBar Grid.Row="1" x:Name="Pgbr_Loading" CornerRadius="0"
+			             Height="20" HorizontalAlignment="Stretch"
+			             Foreground="DodgerBlue" Background="LightGray"
+			             IsIndeterminate="False" Minimum="0" Maximum="15" Value="5" />
+		</Grid>
+	</Grid>
+	
+</Window>
