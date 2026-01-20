@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace ProjectAFS.Core.Models.Globalization;
@@ -6,6 +7,9 @@ namespace ProjectAFS.Core.Models.Globalization;
 public readonly struct IValue
 {
 	[JsonProperty("value")] public readonly string Value;
+
+	[JsonProperty("value_c", NullValueHandling = NullValueHandling.Ignore)]
+	public readonly string? ValueCute; // see ProjectAFS.Core.Services.AFSChan.IAFSChanManager, ProjectAFS.Plugins.AFSChan and Language JSON files for more information.
 	
 	[JsonConstructor]
 	public IValue(string value)
@@ -17,6 +21,7 @@ public readonly struct IValue
 	/// Returns the localized string representation of the <see cref="IValue"/>.
 	/// </summary>
 	/// <returns>The localized string.</returns>
+	[MethodImpl(MethodImplOptions.NoInlining)] // to support Harmony AOP patching (e.g. see ProjectAFS.Core.Services.AFSChan.AFSChanManager for more information)
 	public override string ToString()
 	{
 		return Value;

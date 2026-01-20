@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="ProjectAFS.Core/ProjectAFS.Core.csproj" />
   <Project Path="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+  <Project Path="ProjectAFS.Resources/ProjectAFS.Resources.csproj" />
   <Project Path="ProjectAFS.Shell.Desktop/ProjectAFS.Shell.Desktop.csproj" />
 </Solution>

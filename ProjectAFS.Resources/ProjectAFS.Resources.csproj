@@ -1,10 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <RootNamespace>ProjectAFS.Shell.Desktop</RootNamespace>
+        <RootNamespace>ProjectAFS.Resources</RootNamespace>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
+    
+    <ItemGroup>
+        <EmbeddedResource Include="Languages\**\*.json" />
+    </ItemGroup>
+    
 </Project>

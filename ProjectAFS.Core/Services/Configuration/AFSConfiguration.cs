@@ -1,6 +1,5 @@
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Configuration;
 
@@ -8,7 +7,8 @@ namespace ProjectAFS.Core.Services.Configuration;
 
 public class AFSConfiguration : IAFSConfiguration
 {
-	private const string ConfigFileName = "$HOME/Misaka Castle/ProjectAFS/config.json";
+	private readonly static string ConfigFileName = Path.Combine("$CONFIG", "config.json");
+	private readonly static string ConfigBasePath = Path.Combine("$APPDATA", "Misaka Castle", "ProjectAFS");
 	private List<IAFSConfigSection> _sections;
 
 	public AFSConfiguration()
@@ -19,8 +19,8 @@ public class AFSConfiguration : IAFSConfiguration
 
 	private void LoadConfiguration()
 	{
-		string configBasePath = DetermineConfigFolderPath();
-		string configFilePath = ConfigFileName.Replace("$HOME", configBasePath);
+		string configBasePath = ConfigBasePath.Replace("$APPDATA", DetermineAppDataFolderPath());
+		string configFilePath = ConfigFileName.Replace("$CONFIG", configBasePath);
 		if (!Directory.Exists(configBasePath))
 		{
 			Directory.CreateDirectory(configBasePath);
@@ -62,13 +62,13 @@ public class AFSConfiguration : IAFSConfiguration
 
 	public void SaveAll()
 	{
-		string configBasePath = DetermineConfigFolderPath();
-		string configFilePath = ConfigFileName.Replace("$HOME", configBasePath);
+		string configBasePath = ConfigBasePath.Replace("$APPDATA", DetermineAppDataFolderPath());
+		string configFilePath = ConfigFileName.Replace("$CONFIG", configBasePath);
 		string jsonContent = JsonConvert.SerializeObject(_sections, Formatting.Indented);
 		File.WriteAllText(configFilePath, jsonContent, new UTF8Encoding());
 	}
 
-	private static string DetermineConfigFolderPath()
+	private static string DetermineAppDataFolderPath()
 	{
 		if (OperatingSystem.IsWindows())
 		{

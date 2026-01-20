@@ -17,7 +17,14 @@ public static class AFSDispatcher
 			await Task.CompletedTask;
 			return;
 		}
-		await Dispatcher.UIThread.InvokeAsync(() => { });
+		
+		var tcs = new TaskCompletionSource();
+		Dispatcher.UIThread.Post(() =>
+		{
+			tcs.SetResult();
+		});
+		
+		await tcs.Task;
 	}
 
 	[Obsolete("Use AFSTask.SwitchToThreadPool() instead as it's more efficient and semantically clearer.")]

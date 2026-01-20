@@ -1,0 +1,33 @@
+{
+	"langCode": "en",
+	"langName": "English",
+	"texts": {
+		"splash.init.host": {
+			"value": "Initializing project-afs ({curr}/{total})",
+			"value_c": "Waking up AFS-Chan... still a bit sleepy... ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "Initializing plugin {pluginName} ({curr}/{total})",
+			"value_c": "Hey {pluginName}, ohayo~ time to wake up! ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "Installing plugin {pluginId} ({curr}/{total})",
+			"value_c": "Welcome aboard, {pluginId}! ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "Uninstalling plugin {pluginId} ({curr}/{total})",
+			"value_c": "Sad to see you go, {pluginId}... ({curr}/{total})"
+		},
+		"splash.init.complete": {
+			"value": "Almost done... ({curr}/{total})",
+			"value_c": "Just a little more... we're almost there! ({curr}/{total})"
+		},
+		"settings.features.ui.afschan.title": {
+			"value": "AFS-Chan [Beta]"
+		},
+		"settings.features.ui.afschan": {
+			"value": "The super cute AFS-Chan is here to revolutionize your interaction experience!\nLet AFS-Chan accompany you through every moment of using project-afs, bringing endless joy and surprises!\n[Restart required]",
+			"value_c": "Hehe~ AFS-Chan is working hard to be cute!\nFrom now on, I'll be your companion while using project-afs!\n[Oh, and restart is required~]"
+		}
+	}
+}

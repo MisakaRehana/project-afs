@@ -1,0 +1,40 @@
+{
+	"langCode": "ja",
+	"langName": "日本語",
+	"texts": {
+		"splash.init.host": {
+			"value": "project-afsの初期化 ({curr}/{total})",
+			"value_c": "AFSちゃんを起こしてるよ…(｡-ω-)ﾉﾞまだ眠いなぁ… ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "プラグイン {pluginName} の初期化 ({curr}/{total})",
+			"value_c": "{pluginName} ちゃん、起きて起きて〜！ ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "プラグイン {pluginId} のインストール ({curr}/{total})",
+			"value_c": "ようこそ {pluginId} ちゃん、仲間入りだよ〜！ ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "プラグイン {pluginId} のアンインストール ({curr}/{total})",
+			"value_c": "{pluginId}ちゃんとお別れの時間だね… ({curr}/{total})"
+		},
+		"splash.init.complete": {
+			"value": "完了間近 ({curr}/{total})",
+			"value_c": "ちょっとだけ待ってて、もうすぐ終わるよ！ ({curr}/{total})"
+		},
+		"settings.feature.betaWarning.title": {
+			"value": "ベータ機能の警告"
+		},
+		"settings.feature.betaWarning": {
+			"value": "ベータ機能を有効にしています。これらの機能は十分にテストされていない可能性があり、不安定またはバグが存在する可能性があります。慎重に使用し、問題が発生した場合は速やかにフィードバックしてください。",
+			"value_c": "不思議な魔法の機能を有効にしようとしているみたいだね！この機能はまだテスト段階だから、ちょっとした問題が起こるかもしれないよ。もし変なことが起きたら、ぜひ教えてね。一緒にもっと良くしていこう！"
+		},
+		"settings.features.ui.afschan.title": {
+			"value": "AFSちゃん [ベータ版]"
+		},
+		"settings.feature.ui.afschan": {
+			"value": "従来の人とコンピュータのインタラクション体験を覆す、超かわいいAFSちゃんが登場！\nAFSちゃんがあなたのproject-afsの使用時間を楽しく驚きに満ちたものにします！\n[再起動が必要です]",
+			"value_c": "えへへ～AFSちゃんは一生懸命かわいくなろうとしているよ！\nこれからは私が一緒にproject-afsを使うよ！\n[あ、再起動が必要だよ〜]"
+		}
+	}
+}

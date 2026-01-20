@@ -8,93 +8,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e6c365-5ce9-40bc-acf2-74218fe3bbea" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/avalonia.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/IPlugin.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IAFSConfigSection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IAFSConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IConfigSerivce.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPluginService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/II18nService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/LocalizedExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/ILanguage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/IValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageChangedEventArgs.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Startup/StartupProgressReport.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/ProjectAFS.Core.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/ResourceManagement/AFSResManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/AFSConfigSection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/AFSConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/ConfigService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/ServiceExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupHostService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupProgressProxy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/UI/WinSplash.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/UI/WinSplash.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Enumerable/EnumExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Hosting/DependencyInjectionExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.Linux.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.MacOS.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.Win32.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Strings/StringExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSDispatcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTask.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskExpandUtility.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskMethodBuilder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskMethodBuilder`1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTask`1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.GlobalUsings.g.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/Debug/net10.0/ProjectAFS.Core.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/ProjectAFS.Core.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/ProjectAFS.Core.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/ProjectAFS.Core.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/obj/rider.project.restore.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/AFSAppDesktop.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/app.manifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/.NETCoreApp,Version=v10.0.AssemblyAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/Avalonia/Resources.Inputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/Avalonia/resources" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/ProjectAFS.Launcher.Desktop.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/ProjectAFS.Launcher.Desktop.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/ProjectAFS.Launcher.Desktop.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/ProjectAFS.Launcher.Desktop.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/Debug/net10.0/ProjectAFS.Launcher.Desktop.csproj.AssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/ProjectAFS.Launcher.Desktop.csproj.nuget.dgspec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/ProjectAFS.Launcher.Desktop.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/ProjectAFS.Launcher.Desktop.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/project.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.slnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSON File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -112,19 +41,28 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Temp/SourceGeneratedDocuments/275A95C529DBB32C83E31CEF/Avalonia.Generators/Avalonia.Generators.NameGenerator.AvaloniaNameSourceGenerator/ProjectAFS.Core.UI.WinSplash.g.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24f5857a073841e189d805de9660178ef49910/ea/75f83c80/Boolean.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b394f578dc77436fb36464530f63b8633ea00/f3/3f423c8b/ValueEnumerable`2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/AFSApp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/IPlugin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IAFSConfigSection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IAFSConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPluginService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/II18nService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/I18nExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/ResourceManagement/IAFSResManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/LocalizedExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageChangedEventArgs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Startup/StartupProgressReport.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/ResourceManagement/AFSResManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/AFSConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/ConfigService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/ServiceExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupHostService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupProgressProxy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/UI/WinSplash.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Enumerable/EnumExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Hosting/DependencyInjectionExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter.cs" root0="FORCE_HIGHLIGHTING" />
@@ -132,12 +70,14 @@
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.MacOS.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.Win32.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/NotImplementedAttribute.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Strings/StringExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskMethodBuilder`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTask`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/AFSAppDesktop.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -151,6 +91,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET 项目.ProjectAFS.Launcher.Desktop.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -187,6 +128,27 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="ProjectAFS.Launcher.Desktop" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\Misaka12456\AppData\Roaming\Subversion</configuration>
@@ -199,13 +161,15 @@
       <option name="presentableId" value="Default" />
       <updated>1768766533870</updated>
       <workItem from="1768766534284" duration="17828000" />
-      <workItem from="1768788066150" duration="11416000" />
+      <workItem from="1768788066150" duration="24098000" />
+      <workItem from="1768875084545" duration="10495000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -225,6 +189,19 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs</url>
+          <line>52</line>
+          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Core\Services\Globalization\I18nService.cs" containingFunctionPresentation="方法 'FetchPreferredLanguage'">
+            <startOffsets>
+              <option value="1949" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2025" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

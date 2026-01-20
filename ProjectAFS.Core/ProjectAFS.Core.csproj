@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <RootNamespace>ProjectAFS.Core</RootNamespace>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -14,6 +15,20 @@
         <PackageReference Include="Avalonia" Version="11.3.11" />
         <PackageReference Include="SemanticVersioning" Version="3.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+        <PackageReference Include="Lib.Harmony" Version="2.4.2" />
+        <PackageReference Include="ZLinq" Version="1.5.4" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\ProjectAFS.Resources\ProjectAFS.Resources.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Include="Resources/libNativeMessageBox.dylib">
+            <Link>runtimes/osx/native/libNativeMessageBox.dylib</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Visible>false</Visible><!-- Hide virtual link folder structure (runtimes/osx/native/) in Solution Explorer -->
+        </None>
     </ItemGroup>
 
 </Project>

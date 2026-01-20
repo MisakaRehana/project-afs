@@ -5,7 +5,11 @@
         xmlns:l="clr-namespace:ProjectAFS.Core.MarkupExtensions.Globalization"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ProjectAFS.Core.UI.WinSplash"
-        Title="project-afs" Width="800" Height="450">
+        Title="project-afs" Width="800" Height="450"
+        WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        CanResize="False" SystemDecorations="None" TransparencyLevelHint="Transparent"
+        Background="White"
+        Opened="OnOpened">
 	
 	<Grid RowDefinitions="*,Auto,Auto">
 		<!-- Title -->

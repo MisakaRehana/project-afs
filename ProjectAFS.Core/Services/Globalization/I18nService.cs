@@ -1,13 +1,17 @@
 using System.Globalization;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Configuration;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
+using ProjectAFS.Core.Abstracts.Services.ResourceManagement;
 using ProjectAFS.Core.Models.Globalization;
-using ProjectAFS.Core.ResourceManagement;
+using ProjectAFS.Core.Utility;
 using ProjectAFS.Core.Utility.Enumerable;
 using ProjectAFS.Core.Utility.Threading;
+using ZLinq;
 
 namespace ProjectAFS.Core.Services.Globalization;
 
@@ -19,10 +23,10 @@ public sealed class I18nService : IHostedService, II18nService
 	public IValue this[LanguageType langType, string key] => FetchLocalizedValue(langType, key);
 	private readonly ILogger<I18nService> _logger;
 	private readonly IAFSConfiguration _config;
-	private readonly AFSResManager _resManager;
+	private readonly IAFSResManager _resManager;
 	private readonly Dictionary<LanguageType, ILanguage> _languages;
 
-	public I18nService(ILogger<I18nService> logger, IAFSConfiguration config, AFSResManager resManager) // Dependency Injection
+	public I18nService(ILogger<I18nService> logger, IAFSConfiguration config, IAFSResManager resManager) // Dependency Injection
 	{
 		_resManager = resManager;
 		_config = config;
@@ -130,25 +134,53 @@ public sealed class I18nService : IHostedService, II18nService
 	private async AFSTask LoadLanguages(CancellationToken cancellationToken = default)
 	{
 		_languages.Clear();
-		var langPaths = Enum.GetValues<LanguageType>()
-			.Where(lang => lang != LanguageType.None)
-			.Select(lang => $"Languages/{lang.GetDescription()}.json");
-		var langReaders = _resManager.OpenMultipleTextReadersAsync(langPaths);
-		await foreach (var langReader in langReaders)
+		await foreach (var language in LoadLanguagesInternalAsync(cancellationToken))
 		{
-			cancellationToken.ThrowIfCancellationRequested();
-			using (langReader)
+			_languages[language.LangCode] = language;
+		}
+	}
+	
+	private async IAsyncEnumerable<ILanguage> LoadLanguagesInternalAsync([EnumeratorCancellation] CancellationToken cancellationToken = default)
+	{
+		var langReaders = Enum.GetValues<LanguageType>()
+			.Where(lang => lang != LanguageType.None)
+			.Where(lang => !typeof(LanguageType).GetField(lang.ToString())!
+				.GetCustomAttributes<NotImplementedAttribute>().Any())
+			.Select(lang => $"Languages/{lang.GetDescription()}.json")
+			.Select(langPath => new Lazy<StreamReader?>(() => _resManager.TryOpenTextReader(langPath, out var reader) ? reader as StreamReader : null));
+		
+		foreach (var lazyReader in langReaders)
+		{
+			ILanguage? language = null;
+			StreamReader? langReader = null;
+			try
 			{
-				string langJson = await langReader.ReadToEndAsync(cancellationToken);
-				var language = JsonConvert.DeserializeObject<ILanguage>(langJson);
-				if (language != null)
+				cancellationToken.ThrowIfCancellationRequested();
+				langReader = lazyReader.Value;
+				if (langReader == null) continue;
+				using (langReader)
 				{
-					_languages[language.LangCode] = language;
+					string langJson = await langReader.ReadToEndAsync(cancellationToken);
+					language = JsonConvert.DeserializeObject<ILanguage>(langJson);
 				}
-				else
-				{
-					_logger.LogWarning("Failed to deserialize language JSON from {Path}", (langReader as StreamReader)?.BaseStream);
-				}
+			}
+			catch (OperationCanceledException)
+			{
+				_logger.LogInformation("Language loading was cancelled.");
+				throw;
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError(ex, "An error occurred while loading a language.");
+				langReader?.Dispose();
+			}
+			if (language != null)
+			{
+				yield return language;
+			}
+			else
+			{
+				_logger.LogWarning("Failed to deserialize language JSON from {Path}", langReader?.BaseStream);
 			}
 		}
 	}

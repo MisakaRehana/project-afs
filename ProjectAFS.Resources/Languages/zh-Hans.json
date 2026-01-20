@@ -1,0 +1,40 @@
+{
+	"langCode": "zh-Hans",
+	"langName": "简体中文",
+	"texts": {
+		"splash.init.host": {
+			"value": "初始化 project-afs ({curr}/{total})",
+			"value_c": "诶？已经早上了吗……(｡-ω-)ﾉﾞ好困啊…… ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "初始化插件 {pluginName} ({curr}/{total})",
+			"value_c": "{pluginName} 小伙伴，该起床了哦~ ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.install": {
+			"value": "安装插件 {pluginId} ({curr}/{total})",
+			"value_c": "欢迎新伙伴 {pluginId} 加入大家庭~ ({curr}/{total})"
+		},
+		"splash.init.plugin.pending.uninstall": {
+			"value": "卸载插件 {pluginId} ({curr}/{total})",
+			"value_c": "{pluginId} 小伙伴要和我们说再见了... ({curr}/{total})"
+		},
+		"splash.init.complete": {
+			"value": "即将完成 ({curr}/{total})",
+			"value_c": "请再等一下，马上就好了！o((>ω< ))o ({curr}/{total})"
+		},
+		"settings.feature.betaWarning.title": {
+			"value": "Beta功能警告"
+		},
+		"settings.feature.betaWarning": {
+			"value": "您正在启用Beta功能。这些功能可能尚未经过充分测试，可能存在不稳定性或错误。请谨慎使用，并在遇到问题时及时反馈。",
+			"value_c": "您好像正在启用一个神秘的魔法功能哦！这个功能还在测试阶段，可能会有一些小问题出现。如果遇到什么奇怪的现象，别忘了告诉我们，让我们一起把它变得更好吧！"
+		},
+		"settings.features.ui.afschan.title": {
+			"value": "AFS酱 [Beta]"
+		},
+		"settings.features.ui.afschan": {
+			"value": "颠覆传统人机交互体验的超可爱AFS酱来啦！\n让AFS酱陪伴你度过每一个使用project-afs的时刻，带来无尽的欢乐与惊喜！\n[需要重新启动]",
+			"value_c": "哼哼～AFS酱正在努力卖萌中！\n以后就由我来陪你一起使用 project-afs 啦！\n[哦对了，需要重启哦~]"
+		}
+	}
+}

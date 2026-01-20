@@ -1,7 +1,11 @@
+using System.Text.RegularExpressions;
+
 namespace ProjectAFS.Core.Utility.Strings;
 
 public static class StringExtension
 {
+	private readonly static Regex PlaceholderRegex = new(@"\{([^\{\}]+)\}", RegexOptions.Compiled);
+	
 	private sealed class TrieNode
 	{
 		public Dictionary<char, TrieNode>? Children;
@@ -138,5 +142,40 @@ public static class StringExtension
 				return new string(buffer, 0, pos);
 			}
 		}
+	}
+	
+	public static string AdvancedFormat(string template, params object?[] args)
+	{
+		ArgumentException.ThrowIfNullOrEmpty(template);
+		if (string.IsNullOrEmpty(template) || args.Length == 0) return template;
+		int argIndex = 0;
+
+		string result = PlaceholderRegex.Replace(template, match =>
+		{
+			string key = match.Groups[1].Value;
+
+			if (int.TryParse(key, out int index))
+			{
+				if (index >= 0 && index < args.Length)
+				{
+					return args[index]?.ToString() ?? string.Empty;
+				}
+				else
+				{
+					return match.Value; // the index is out of range, return the original placeholder
+				}
+			}
+
+			if (argIndex < args.Length)
+			{
+				var val = args[argIndex]?.ToString() ?? string.Empty;
+				argIndex++;
+				return val;
+			}
+
+			return match.Value; // out of args parameter range, return the original placeholder
+		});
+		
+		return result;
 	}
 }

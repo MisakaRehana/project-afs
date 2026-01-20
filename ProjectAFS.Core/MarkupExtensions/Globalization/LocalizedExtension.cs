@@ -44,7 +44,7 @@ public sealed class LocalizedExtension : MarkupExtension
 			if (_app.FetchService<II18nService>() is not { } i18n)
 			{
 				_logger.LogError("II18nService is not available in I18nExtension.");
-				return IValue.AsNull(Key).Value;
+				return IValue.AsNull(Key).ToString();
 			}
 
 			UpdateValue(avaObj, avaProp, i18n);
@@ -57,7 +57,7 @@ public sealed class LocalizedExtension : MarkupExtension
 		
 		_logger.LogError("I18nExtension could not retrieve the target object or property.");
 		
-		return IValue.AsNull(Key).Value;
+		return IValue.AsNull(Key).ToString();
 	}
 	
 	private void UpdateValue(AvaloniaObject avaObj, AvaloniaProperty avaProp, II18nService i18n)
@@ -70,13 +70,13 @@ public sealed class LocalizedExtension : MarkupExtension
 		try
 		{
 			return LangType.HasValue
-				? i18n[LangType.Value, Key].Value // specific language
-				: i18n[Key].Value; // current using language
+				? i18n[LangType.Value, Key].ToString() // specific language
+				: i18n[Key].ToString(); // current using language
 		}
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "Error retrieving localized text for key '{Key}' with LangType '{LangType}'.", Key, LangType);
-			return IValue.AsNull(Key).Value;
+			return IValue.AsNull(Key).ToString();
 		}
 	}
 }
