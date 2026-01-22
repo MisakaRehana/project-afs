@@ -124,6 +124,24 @@ public sealed class AFSApp : Application
 		return _host.Services.GetRequiredService<T>();
 	}
 	
+	public T CreateInstanceWithInjection<T>() where T : notnull
+	{
+		if (_host == null)
+		{
+			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
+		}
+		return ActivatorUtilities.CreateInstance<T>(_host.Services);
+	}
+	
+	public object CreateInstanceWithInjection(Type implementationType)
+	{
+		if (_host == null)
+		{
+			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
+		}
+		return ActivatorUtilities.CreateInstance(_host.Services, implementationType);
+	}
+	
 	private object FetchService(Type serviceType)
 	{
 		if (_host == null)

@@ -5,6 +5,7 @@ using ProjectAFS.Core.Abstracts.Services.Configuration;
 using ProjectAFS.Core.Abstracts.Services.Extensibility;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Abstracts.Services.ResourceManagement;
+using ProjectAFS.Core.Models.Configuration;
 using ProjectAFS.Core.Services.AFSChan;
 using ProjectAFS.Core.Services.Configuration;
 using ProjectAFS.Core.Services.Extensibility;
@@ -18,11 +19,15 @@ public static class ServiceExtension
 {
 	extension(IServiceCollection services)
 	{
-		
 		public IServiceCollection AddAFSLogging()
 		{
 			services.AddLogging(config =>
 			{
+#if DEBUG
+				config.AddConsole();
+				config.SetMinimumLevel(LogLevel.Debug);
+				config.AddDebug();
+#else
 				if (OperatingSystem.IsWindows())
 				{
 					config.AddConsole();
@@ -39,6 +44,7 @@ public static class ServiceExtension
 					config.AddConsole(); // in Android platform this will redirect to logcat; in iOS it goes to system log
 					config.SetMinimumLevel(LogLevel.Debug);
 				}
+#endif
 			});
 			return services;
 		}
@@ -53,6 +59,7 @@ public static class ServiceExtension
 		{
 			services.AddSingleton<IAFSConfiguration, AFSConfiguration>();
 			services.AddSingleton<IConfigService, ConfigService>();
+			services.AddSingleton<IPathOptions, AFSPathOptions>(_ => new AFSPathOptions(AppContext.BaseDirectory));
 			return services.AddHostedService<ConfigService>(sp => (ConfigService)sp.GetRequiredService<IConfigService>());
 		}
 		
@@ -77,6 +84,7 @@ public static class ServiceExtension
 		
 		public IServiceCollection AddPlugins()
 		{
+			services.AddSingleton<IPluginInstallerService, PluginInstallerService>();
 			services.AddSingleton<IPluginService, PluginService>();
 			return services.AddHostedService<PluginService>(sp => (PluginService)sp.GetRequiredService<IPluginService>());
 		}

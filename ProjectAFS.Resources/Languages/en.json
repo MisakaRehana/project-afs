@@ -6,10 +6,6 @@
 			"value": "Initializing project-afs ({curr}/{total})",
 			"value_c": "Waking up AFS-Chan... still a bit sleepy... ({curr}/{total})"
 		},
-		"splash.init.plugin": {
-			"value": "Initializing plugin {pluginName} ({curr}/{total})",
-			"value_c": "Hey {pluginName}, ohayo~ time to wake up! ({curr}/{total})"
-		},
 		"splash.init.plugin.pending.install": {
 			"value": "Installing plugin {pluginId} ({curr}/{total})",
 			"value_c": "Welcome aboard, {pluginId}! ({curr}/{total})"
@@ -17,6 +13,10 @@
 		"splash.init.plugin.pending.uninstall": {
 			"value": "Uninstalling plugin {pluginId} ({curr}/{total})",
 			"value_c": "Sad to see you go, {pluginId}... ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "Initializing plugin {pluginName} ({curr}/{total})",
+			"value_c": "Hey {pluginName}, ohayo~ time to wake up! ({curr}/{total})"
 		},
 		"splash.init.complete": {
 			"value": "Almost done... ({curr}/{total})",

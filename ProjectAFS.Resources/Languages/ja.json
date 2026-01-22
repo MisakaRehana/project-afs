@@ -6,10 +6,6 @@
 			"value": "project-afsの初期化 ({curr}/{total})",
 			"value_c": "AFSちゃんを起こしてるよ…(｡-ω-)ﾉﾞまだ眠いなぁ… ({curr}/{total})"
 		},
-		"splash.init.plugin": {
-			"value": "プラグイン {pluginName} の初期化 ({curr}/{total})",
-			"value_c": "{pluginName} ちゃん、起きて起きて〜！ ({curr}/{total})"
-		},
 		"splash.init.plugin.pending.install": {
 			"value": "プラグイン {pluginId} のインストール ({curr}/{total})",
 			"value_c": "ようこそ {pluginId} ちゃん、仲間入りだよ〜！ ({curr}/{total})"
@@ -17,6 +13,10 @@
 		"splash.init.plugin.pending.uninstall": {
 			"value": "プラグイン {pluginId} のアンインストール ({curr}/{total})",
 			"value_c": "{pluginId}ちゃんとお別れの時間だね… ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "プラグイン {pluginName} の初期化 ({curr}/{total})",
+			"value_c": "{pluginName} ちゃん、起きて起きて〜！ ({curr}/{total})"
 		},
 		"splash.init.complete": {
 			"value": "完了間近 ({curr}/{total})",

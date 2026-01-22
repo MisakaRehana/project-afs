@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Configuration;
 
@@ -10,7 +11,7 @@ public sealed class AFSConfigSection : IAFSConfigSection
 	public string SectionName { get; }
 
 	[JsonProperty("settings")]
-	public Dictionary<string, string> Settings { get; }
+	public ConcurrentDictionary<string, string> Settings { get; }
 	
 	public string this[string key]
 	{
@@ -21,11 +22,11 @@ public sealed class AFSConfigSection : IAFSConfigSection
 	public AFSConfigSection()
 	{
 		SectionName = string.Empty;
-		Settings = new Dictionary<string, string>();
+		Settings = new ConcurrentDictionary<string, string>();
 	}
 	
 	[JsonConstructor]
-	public AFSConfigSection(string sectionName, Dictionary<string, string> settings)
+	public AFSConfigSection(string sectionName, ConcurrentDictionary<string, string> settings)
 	{
 		SectionName = sectionName;
 		Settings = settings;
@@ -39,5 +40,25 @@ public sealed class AFSConfigSection : IAFSConfigSection
 	public void SetValue(string key, string value)
 	{
 		Settings[key] = value;
+	}
+	
+	public IDictionary<string, string> Diff(IAFSConfigSection other)
+	{
+		var diffs = new Dictionary<string, string>();
+		foreach (var kvp in Settings.Where(kvp => !other.Settings.ContainsKey(kvp.Key) || other.Settings[kvp.Key] != kvp.Value))
+		{
+			diffs[kvp.Key] = kvp.Value;
+		}
+		return diffs;
+	}
+	
+	public IAFSConfigSection UpdateTo(IAFSConfigSection baseSection)
+	{
+		var newSettings = new ConcurrentDictionary<string, string>(baseSection.Settings);
+		foreach (var kvp in Settings)
+		{
+			newSettings[kvp.Key] = kvp.Value;
+		}
+		return new AFSConfigSection(baseSection.SectionName, newSettings);
 	}
 }

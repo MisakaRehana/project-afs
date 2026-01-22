@@ -1,6 +1,7 @@
 using Avalonia.Threading;
 using ProjectAFS.Core.Models.Startup;
 using ProjectAFS.Core.UI;
+using ProjectAFS.Core.Utility.Threading;
 
 namespace ProjectAFS.Core.Services.Startup;
 
@@ -25,5 +26,10 @@ public sealed class StartupProgressProxy : IProgress<StartupProgressProxy>
 	public void Report(StartupProgressProxy value)
 	{
 		// No implementation needed
+	}
+
+	public async AFSTask CompleteAsync()
+	{
+		if (_splash == null) return;
 	}
 }

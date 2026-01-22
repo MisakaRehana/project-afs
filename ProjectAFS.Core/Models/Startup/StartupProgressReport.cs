@@ -1,3 +1,3 @@
 namespace ProjectAFS.Core.Models.Startup;
 
-public record StartupProgressReport(string Message, int currStepNum, int totalSteps, bool isLocalized = false);
+public record StartupProgressReport(string Message, StartupStage current, bool isAutoLocalized = true);

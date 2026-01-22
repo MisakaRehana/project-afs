@@ -6,10 +6,6 @@
 			"value": "初始化 project-afs ({curr}/{total})",
 			"value_c": "诶？已经早上了吗……(｡-ω-)ﾉﾞ好困啊…… ({curr}/{total})"
 		},
-		"splash.init.plugin": {
-			"value": "初始化插件 {pluginName} ({curr}/{total})",
-			"value_c": "{pluginName} 小伙伴，该起床了哦~ ({curr}/{total})"
-		},
 		"splash.init.plugin.pending.install": {
 			"value": "安装插件 {pluginId} ({curr}/{total})",
 			"value_c": "欢迎新伙伴 {pluginId} 加入大家庭~ ({curr}/{total})"
@@ -17,6 +13,10 @@
 		"splash.init.plugin.pending.uninstall": {
 			"value": "卸载插件 {pluginId} ({curr}/{total})",
 			"value_c": "{pluginId} 小伙伴要和我们说再见了... ({curr}/{total})"
+		},
+		"splash.init.plugin": {
+			"value": "初始化插件 {pluginName} ({curr}/{total})",
+			"value_c": "{pluginName} 小伙伴，该起床了哦~ ({curr}/{total})"
 		},
 		"splash.init.complete": {
 			"value": "即将完成 ({curr}/{total})",

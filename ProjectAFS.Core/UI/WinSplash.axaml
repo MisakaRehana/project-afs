@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
         CanResize="False" SystemDecorations="None" TransparencyLevelHint="Transparent"
         Background="White"
-        Opened="OnOpened">
+        Opened="OnOpened" Closing="OnClosing">
 	
 	<Grid RowDefinitions="*,Auto,Auto">
 		<!-- Title -->

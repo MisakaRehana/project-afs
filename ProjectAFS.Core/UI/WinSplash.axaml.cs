@@ -1,30 +1,41 @@
+using System.ComponentModel;
+using System.Reflection;
+using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Animation.Easings;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Models.Startup;
 using ProjectAFS.Core.Utility.Strings;
 using ProjectAFS.Core.Utility.Threading;
+using IApplicationLifetime = Avalonia.Controls.ApplicationLifetimes.IApplicationLifetime;
 
 namespace ProjectAFS.Core.UI;
 
 public sealed partial class WinSplash : Window
 {
+	public bool ShouldClose { get; set; } = false;
+	private readonly IApplicationLifetime? _lifetime;
 	private readonly ILogger<WinSplash> _logger;
 	private readonly II18nService _i18n;
+	private int? _stageCount;
 
 	public WinSplash()
 	{
+		_lifetime = Application.Current?.ApplicationLifetime;
 		_logger = new LoggerFactory().CreateLogger<WinSplash>();
 		_i18n = null!; // for design time only
 		InitializeComponent();
 	}
 	
-	public WinSplash(ILogger<WinSplash> logger, II18nService i18n) // Dependency Injection
+	public WinSplash(IApplicationLifetime lifetime, ILogger<WinSplash> logger, II18nService i18n)
 	{
+		_lifetime = lifetime;
 		_logger = logger;
 		_i18n = i18n;
 		InitializeComponent();
@@ -43,14 +54,40 @@ public sealed partial class WinSplash : Window
 	
 	private async void OnOpened(object? sender, EventArgs args)
 	{
-		if (Design.IsDesignMode) return;
-		// await AFSTask.Delay(16); // wait a frame to ensure the window is rendered
-		// await RunFadeInAsync();
-		await Dispatcher.UIThread.InvokeAsync(async () =>
+		try
 		{
-			await AFSTask.Delay(16);
-			await RunFadeInAsync();
-		});
+			if (Design.IsDesignMode) return;
+			// await AFSTask.Delay(16); // wait a frame to ensure the window is rendered
+			// await RunFadeInAsync();
+			await Dispatcher.UIThread.InvokeAsync(async () =>
+			{
+				await AFSTask.Delay(16);
+				await RunFadeInAsync();
+			});
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError(ex, "An error occurred during splash screen fade-in.");
+			var app = Application.Current as AFSApp;
+			if (typeof(AFSApp).GetField("_host", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(app) is IHost host)
+			{
+				await host.StopAsync(); // stop the host.
+			}
+
+			if (_lifetime is IClassicDesktopStyleApplicationLifetime desktop)
+			{
+				desktop.Shutdown(1); // exit with error code 1
+			}
+		}
+	}
+	
+	private void OnClosing(object? sender, WindowClosingEventArgs args)
+	{
+		if (!ShouldClose)
+		{
+			_logger.LogDebug("Splash close operation was attempted but blocked.");
+			args.Cancel = true; // cancel the close operation (this will prevent Alt+F4 or window close button from closing the splash)
+		}
 	}
 
 	private async AFSTask RunFadeInAsync()
@@ -78,7 +115,6 @@ public sealed partial class WinSplash : Window
 		await fadeIn.RunAsync(this);
 	}
 	
-	
 	public void UpdateProgress(StartupProgressReport report)
 	{
 		Dispatcher.UIThread.Invoke(() =>
@@ -87,11 +123,12 @@ public sealed partial class WinSplash : Window
 			{
 				Grd_FooterLoading.IsVisible = true;
 			}
-
-			float progress = (float)report.currStepNum / report.totalSteps;
+			
+			_stageCount ??= Enum.GetValues<StartupStage>().Length;
+			float progress = (float)((int)report.current + 1) / _stageCount.Value;
 			Pgbr_Loading.Value = progress;
-			string template = report.isLocalized ? _i18n[report.Message].ToString() : report.Message;
-			Tbk_StatusText.Text = StringExtension.AdvancedFormat(template, report.currStepNum, report.totalSteps);
+			string template = report.isAutoLocalized ? report.Message : _i18n[report.Message].ToString();
+			Tbk_StatusText.Text = StringExtension.AdvancedFormat(template, (int)report.current + 1, _stageCount);
 		});
 	}
 }
