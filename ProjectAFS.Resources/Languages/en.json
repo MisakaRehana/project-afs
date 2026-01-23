@@ -22,6 +22,114 @@
 			"value": "Almost done... ({curr}/{total})",
 			"value_c": "Just a little more... we're almost there! ({curr}/{total})"
 		},
+		"welcome.recent_projects": {
+			"value": "Select a recent project"
+		},
+		"welcome.recent_projects.search_placeholder": {
+			"value": "Search recent projects..."
+		},
+		"welcome.get_started": {
+			"value": "...or get started from an option"
+		},
+		"welcome.new_solution": {
+			"value": "Create Solution"
+		},
+		"welcome.new_solution.description": {
+			"value": "Choose a template with basic fanmade structure to get started"
+		},
+		"welcome.open_solution": {
+			"value": "Open a Project or Solution"
+		},
+		"welcome.open_solution.description": {
+			"value": "Open a local AFS project or .afsln file"
+		},
+		"welcome.skip": {
+			"value": "Continue without fanmade"
+		},
+		"ui.menu.file": {
+			"value": "File"
+		},
+		"ui.menu.file.new_solution": {
+			"value": "New Solution..."
+		},
+		"ui.menu.file.save": {
+			"value": "Save"
+		},
+		"ui.menu.file.save_as": {
+			"value": "Save As..."
+		},
+		"ui.menu.file.save_all": {
+			"value": "Save All"
+		},
+		"ui.menu.file.settings": {
+			"value": "Settings"
+		},
+		"ui.menu.file.exit": {
+			"value": "Exit"
+		},
+		"ui.menu.edit": {
+			"value": "Edit"
+		},
+		"ui.menu.edit.undo": {
+			"value": "Undo"
+		},
+		"ui.menu.edit.redo": {
+			"value": "Redo"
+		},
+		"ui.menu.edit.cut": {
+			"value": "Cut"
+		},
+		"ui.menu.edit.copy": {
+			"value": "Copy"
+		},
+		"ui.menu.edit.paste": {
+			"value": "Paste"
+		},
+		"ui.menu.view": {
+			"value": "View"
+		},
+		"ui.menu.view.tool_windows": {
+			"value": "Tool Windows"
+		},
+		"ui.menu.build": {
+			"value": "Build"
+		},
+		"ui.menu.build.build_solution": {
+			"value": "Build Solution"
+		},
+		"ui.menu.build.rebuild_solution": {
+			"value": "Rebuild Solution"
+		},
+		"ui.menu.build.clean_solution": {
+			"value": "Clean Solution"
+		},
+		"ui.menu.build.build_project": {
+			"value": "Build Project"
+		},
+		"ui.menu.build.build_startup_project": {
+			"value": "Build Startup Project"
+		},
+		"ui.menu.tools": {
+			"value": "Tools"
+		},
+		"ui.menu.window": {
+			"value": "Window"
+		},
+		"ui.menu.window.close_all": {
+			"value": "Close All"
+		},
+		"ui.menu.help": {
+			"value": "Help"
+		},
+		"ui.menu.help.bug_report": {
+			"value": "Report Bug"
+		},
+		"ui.menu.help.check_for_updates": {
+			"value": "Check for Updates..."
+		},
+		"ui.menu.help.about": {
+			"value": "About project-afs"
+		},
 		"settings.features.ui.afschan.title": {
 			"value": "AFS-Chan [Beta]"
 		},

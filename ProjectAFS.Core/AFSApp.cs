@@ -4,6 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Themes.Fluent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjectAFS.Core.Abstracts.Services.Extensibility;
 using ProjectAFS.Core.Services.Startup;
 using ProjectAFS.Core.Utility.Hosting;
 using ProjectAFS.Core.Utility.Threading;
@@ -13,6 +14,7 @@ namespace ProjectAFS.Core;
 
 public sealed class AFSApp : Application
 {
+	public List<Type> BuiltInPlugins { get; }
 	private IHost? _host;
 	
 	/// <summary>
@@ -20,6 +22,11 @@ public sealed class AFSApp : Application
 	/// </summary>
 	/// <param name="serviceType">The type of the service to fetch.</param>
 	public object this[Type serviceType] => FetchService(serviceType);
+	
+	public AFSApp(params Type[] builtInPlugins)
+	{
+		BuiltInPlugins = builtInPlugins.ToList();
+	}
 	
 	public override void Initialize()
 	{
@@ -59,7 +66,7 @@ public sealed class AFSApp : Application
 		if (Design.IsDesignMode) return;
 		var progressProxy = new StartupProgressProxy();
 		
-		var builder = Host.CreateDefaultBuilder(hostArgs);
+		var builder = Host.CreateDefaultBuilder(hostArgs).AddSingleton(this);
 		if (ApplicationLifetime is not null)
 		{
 			// builder.ConfigureServices((ctx, s) => s.AddSingleton(ApplicationLifetime));
@@ -142,6 +149,24 @@ public sealed class AFSApp : Application
 		return ActivatorUtilities.CreateInstance(_host.Services, implementationType);
 	}
 	
+	public T CreateInstanceWithInjection<T>(params object[] parameters) where T : notnull
+	{
+		if (_host == null)
+		{
+			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
+		}
+		return ActivatorUtilities.CreateInstance<T>(_host.Services, parameters);
+	}
+	
+	public object CreateInstanceWithInjection(Type implementationType, params object[] parameters)
+	{
+		if (_host == null)
+		{
+			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
+		}
+		return ActivatorUtilities.CreateInstance(_host.Services, implementationType, parameters);
+	}
+	
 	private object FetchService(Type serviceType)
 	{
 		if (_host == null)
@@ -149,5 +174,21 @@ public sealed class AFSApp : Application
 			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
 		}
 		return _host.Services.GetRequiredService(serviceType);
+	}
+
+	public void Shutdown(int code = 0)
+	{
+		if (_host != null)
+		{
+			Task.Run(async () => await _host.StopAsync()).GetAwaiter().GetResult();
+		}
+		if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+		{
+			desktop.Shutdown(code);
+		}
+		else
+		{
+			Environment.Exit(code);
+		}
 	}
 }

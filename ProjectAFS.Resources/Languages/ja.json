@@ -22,6 +22,114 @@
 			"value": "完了間近 ({curr}/{total})",
 			"value_c": "ちょっとだけ待ってて、もうすぐ終わるよ！ ({curr}/{total})"
 		},
+		"welcome.recent_projects": {
+			"value": "最近使用したプロジェクトを選択"
+		},
+		"welcome.recent_projects.search_placeholder": {
+			"value": "最近使用したプロジェクトを検索..."
+		},
+		"welcome.get_started": {
+			"value": "...または次の操作から開始"
+		},
+		"welcome.new_solution": {
+			"value": "新しいソリューションの作成"
+		},
+		"welcome.new_solution.description": {
+			"value": "独自の雛形を持つプロジェクト型を選択して開始"
+		},
+		"welcome.open_solution": {
+			"value": "プロジェクトまたはソリューションを開く"
+		},
+		"welcome.open_solution.description": {
+			"value": "ローカルの AFS プロジェクトや .afsln ファイルを参照"
+		},
+		"welcome.skip": {
+			"value": "自作機能を使わずに続行"
+		},
+		"ui.menu.file": {
+			"value": "ファイル"
+		},
+		"ui.menu.file.new_solution": {
+			"value": "新しいソリューション..."
+		},
+		"ui.menu.file.save": {
+			"value": "保存"
+		},
+		"ui.menu.file.save_as": {
+			"value": "名前を付けて保存..."
+		},
+		"ui.menu.file.save_all": {
+			"value": "すべて保存"
+		},
+		"ui.menu.file.settings": {
+			"value": "設定"
+		},
+		"ui.menu.file.exit": {
+			"value": "終了"
+		},
+		"ui.menu.edit": {
+			"value": "編集"
+		},
+		"ui.menu.edit.undo": {
+			"value": "元に戻す"
+		},
+		"ui.menu.edit.redo": {
+			"value": "やり直す"
+		},
+		"ui.menu.edit.cut": {
+			"value": "切り取り"
+		},
+		"ui.menu.edit.copy": {
+			"value": "コピー"
+		},
+		"ui.menu.edit.paste": {
+			"value": "貼り付け"
+		},
+		"ui.menu.view": {
+			"value": "表示"
+		},
+		"ui.menu.view.tool_windows": {
+			"value": "ツールウィンドウ"
+		},
+		"ui.menu.build": {
+			"value": "ビルド"
+		},
+		"ui.menu.build.build_solution": {
+			"value": "ソリューションのビルド"
+		},
+		"ui.menu.build.rebuild_solution": {
+			"value": "ソリューションの再構築"
+		},
+		"ui.menu.build.clean_solution": {
+			"value": "ソリューションのクリーン"
+		},
+		"ui.menu.build.build_project": {
+			"value": "プロジェクトのビルド"
+		},
+		"ui.menu.build.build_startup_project": {
+			"value": "スタートアッププロジェクトのビルド"
+		},
+		"ui.menu.tools": {
+			"value": "ツール"
+		},
+		"ui.menu.window": {
+			"value": "ウィンドウ"
+		},
+		"ui.menu.window.close_all": {
+			"value": "すべて閉じる"
+		},
+		"ui.menu.help": {
+			"value": "ヘルプ"
+		},
+		"ui.menu.help.bug_report": {
+			"value": "バグを報告"
+		},
+		"ui.menu.help.check_for_updates": {
+			"value": "アップデートを確認..."
+		},
+		"ui.menu.help.about": {
+			"value": "project-afsについて"
+		},
 		"settings.feature.betaWarning.title": {
 			"value": "ベータ機能の警告"
 		},

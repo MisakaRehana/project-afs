@@ -1,3 +1,4 @@
+#pragma warning disable AFS0001 // Avoid direct access or conversion of Application.Current to prevent tight coupling with AFSApp. Use Dependency Injection for type AFSApp to enhance testability and maintainability instead.
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
@@ -30,8 +31,13 @@ public sealed class LocalizedExtension : MarkupExtension
 			_logger = _app.FetchService<ILogger<LocalizedExtension>>() ?? throw new InvalidOperationException("ILogger<I18nExtension> service is not available.");
 		}
 	}
+	
+	public LocalizedExtension(string key) : this()
+	{
+		Key = key;
+	}
 
-	public override object ProvideValue( IServiceProvider serviceProvider)
+	public override object ProvideValue(IServiceProvider serviceProvider)
 	{
 		if (!string.IsNullOrEmpty(DesignTime) && Design.IsDesignMode)
 		{

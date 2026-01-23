@@ -1,6 +1,6 @@
 namespace ProjectAFS.Core.Abstracts.Services.Shell;
 
-public interface IWindowManager
+public interface IWindowManager : IDisposable
 {
 	void CompleteToMainUI();
 }

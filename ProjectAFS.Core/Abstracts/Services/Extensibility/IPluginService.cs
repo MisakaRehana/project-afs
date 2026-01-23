@@ -14,6 +14,7 @@ public interface IPluginService
 	IEnumerable<AFSPluginInfo> DiscoverPlugins();
 	AFSTask ExecutePendingOperationsAsync(CancellationToken cancellationToken = default);
 	AFSTask LoadPluginsAsync(bool skipDiscovering = false, CancellationToken cancellationToken = default);
+	void RegisterBuiltInPlugin<TPlugin>() where TPlugin : class, IPlugin, new();
 	AFSTask ScheduleNewPluginInstallAsync(string pluginPackagePath, CancellationToken cancellationToken = default);
 	AFSTask SchedulePluginUninstallAsync(string pluginId, CancellationToken cancellationToken = default);
 	void EnablePlugin(string pluginId);

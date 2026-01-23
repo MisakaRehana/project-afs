@@ -1,4 +1,4 @@
-using System.ComponentModel;
+// ReSharper disable ClassNeverInstantiated.Global
 using System.Reflection;
 using Avalonia;
 using Avalonia.Animation;
@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
@@ -19,7 +20,8 @@ namespace ProjectAFS.Core.UI;
 
 public sealed partial class WinSplash : Window
 {
-	public bool ShouldClose { get; set; } = false;
+    public bool ShouldClose { get; set; }
+    private readonly AFSApp _app;
 	private readonly IApplicationLifetime? _lifetime;
 	private readonly ILogger<WinSplash> _logger;
 	private readonly II18nService _i18n;
@@ -27,14 +29,19 @@ public sealed partial class WinSplash : Window
 
 	public WinSplash()
 	{
-		_lifetime = Application.Current?.ApplicationLifetime;
+// #pragma warning disable AFS0001
+		_app = (AFSApp)Application.Current!;
+#pragma warning restore AFS0001
+        _lifetime = Application.Current?.ApplicationLifetime;
 		_logger = new LoggerFactory().CreateLogger<WinSplash>();
 		_i18n = null!; // for design time only
 		InitializeComponent();
 	}
 	
-	public WinSplash(IApplicationLifetime lifetime, ILogger<WinSplash> logger, II18nService i18n)
+	[ActivatorUtilitiesConstructor]
+	public WinSplash(AFSApp app, IApplicationLifetime lifetime, ILogger<WinSplash> logger, II18nService i18n)
 	{
+		_app = app;
 		_lifetime = lifetime;
 		_logger = logger;
 		_i18n = i18n;
@@ -68,8 +75,7 @@ public sealed partial class WinSplash : Window
 		catch (Exception ex)
 		{
 			_logger.LogError(ex, "An error occurred during splash screen fade-in.");
-			var app = Application.Current as AFSApp;
-			if (typeof(AFSApp).GetField("_host", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(app) is IHost host)
+			if (typeof(AFSApp).GetField("_host", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(_app) is IHost host)
 			{
 				await host.StopAsync(); // stop the host.
 			}

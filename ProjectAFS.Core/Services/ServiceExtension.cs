@@ -5,6 +5,8 @@ using ProjectAFS.Core.Abstracts.Services.Configuration;
 using ProjectAFS.Core.Abstracts.Services.Extensibility;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Abstracts.Services.ResourceManagement;
+using ProjectAFS.Core.Abstracts.Services.Shell;
+using ProjectAFS.Core.Abstracts.Services.Startup;
 using ProjectAFS.Core.Models.Configuration;
 using ProjectAFS.Core.Services.AFSChan;
 using ProjectAFS.Core.Services.Configuration;
@@ -79,6 +81,8 @@ public static class ServiceExtension
 		{
 			// services.AddSingleton<StartupProgressProxy>(); // this is added in AFSApp class before all other services
 			services.AddHostedService<StartupHostService>();
+			services.AddSingleton<IStartupBridge, StartupBridge>();
+			services.AddSingleton<IWindowManager>(sp => (IWindowManager)sp.GetRequiredService<IStartupBridge>());
 			return services;
 		}
 		
@@ -87,6 +91,12 @@ public static class ServiceExtension
 			services.AddSingleton<IPluginInstallerService, PluginInstallerService>();
 			services.AddSingleton<IPluginService, PluginService>();
 			return services.AddHostedService<PluginService>(sp => (PluginService)sp.GetRequiredService<IPluginService>());
+		}
+
+		public IServiceCollection Complete()
+		{
+			services.AddHostedService<StartupCompletionService>();
+			return services;
 		}
 	}
 }

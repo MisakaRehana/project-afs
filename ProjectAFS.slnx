@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="ProjectAFS.Core.Analyzers/ProjectAFS.Core.Analyzers.csproj" />
+  <Project Path="ProjectAFS.Core.CodeFix/ProjectAFS.Core.CodeFix.csproj" />
   <Project Path="ProjectAFS.Core/ProjectAFS.Core.csproj" />
   <Project Path="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
   <Project Path="ProjectAFS.Resources/ProjectAFS.Resources.csproj" />

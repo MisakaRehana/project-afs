@@ -33,4 +33,7 @@ public sealed class AFSPluginInfo
 	
 	[JsonIgnore]
 	public string InstallPath { get; set; } = string.Empty;
+	
+	[JsonIgnore]
+	public bool IsBuiltIn { get; set; } = false;
 }

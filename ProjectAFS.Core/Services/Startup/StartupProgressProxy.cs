@@ -7,6 +7,7 @@ namespace ProjectAFS.Core.Services.Startup;
 
 public sealed class StartupProgressProxy : IProgress<StartupProgressProxy>
 {
+	public WinSplash Splash => _splash!;
 	private WinSplash? _splash;
 
 	public void Attach(WinSplash splash)
@@ -26,10 +27,5 @@ public sealed class StartupProgressProxy : IProgress<StartupProgressProxy>
 	public void Report(StartupProgressProxy value)
 	{
 		// No implementation needed
-	}
-
-	public async AFSTask CompleteAsync()
-	{
-		if (_splash == null) return;
 	}
 }

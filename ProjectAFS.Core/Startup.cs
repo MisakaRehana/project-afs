@@ -15,5 +15,6 @@ public static class Startup
 		services.AddI18n(); // this will enable globalization support (all services after this are able to display localized splash loading messages)
 		services.AddStartupBootstrap(); // this will awake splash screen
 		services.AddPlugins(); // first plugin installer service, then plugin service itself (this will exec pending plugin operations, then load plugins) [UI Notificable]
+		services.Complete();
 	}
 }

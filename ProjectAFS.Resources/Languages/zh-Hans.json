@@ -22,6 +22,115 @@
 			"value": "即将完成 ({curr}/{total})",
 			"value_c": "请再等一下，马上就好了！o((>ω< ))o ({curr}/{total})"
 		},
+		"welcome.recent_projects": {
+			"value": "选择一个最近的项目"
+		},
+		"welcome.recent_projects.search_placeholder": {
+			"value": "搜索最近的项目..."
+		},
+		"welcome.get_started": {
+			"value": "……或从一个选项开始",
+			"value_c": "……也可以从下面选一个开始哦 o(*￣▽￣*)ブ"
+		},
+		"welcome.new_solution": {
+			"value": "创建新解决方案"
+		},
+		"welcome.new_solution.description": {
+			"value": "选择具有自制基架的项目模板以开始"
+		},
+		"welcome.open_solution": {
+			"value": "打开项目或解决方案"
+		},
+		"welcome.open_solution.description": {
+			"value": "打开本地 AFS 项目或 .afsln 文件"
+		},
+		"welcome.skip": {
+			"value": "继续但无需自制"
+		},
+		"ui.menu.file": {
+			"value": "文件"
+		},
+		"ui.menu.file.new_solution": {
+			"value": "新建解决方案..."
+		},
+		"ui.menu.file.save": {
+			"value": "保存"
+		},
+		"ui.menu.file.save_as": {
+			"value": "另存为..."
+		},
+		"ui.menu.file.save_all": {
+			"value": "全部保存"
+		},
+		"ui.menu.file.settings": {
+			"value": "设置"
+		},
+		"ui.menu.file.exit": {
+			"value": "退出"
+		},
+		"ui.menu.edit": {
+			"value": "编辑"
+		},
+		"ui.menu.edit.undo": {
+			"value": "撤销"
+		},
+		"ui.menu.edit.redo": {
+			"value": "重做"
+		},
+		"ui.menu.edit.cut": {
+			"value": "剪切"
+		},
+		"ui.menu.edit.copy": {
+			"value": "复制"
+		},
+		"ui.menu.edit.paste": {
+			"value": "粘贴"
+		},
+		"ui.menu.view": {
+			"value": "视图"
+		},
+		"ui.menu.view.tool_windows": {
+			"value": "工具窗口"
+		},
+		"ui.menu.build": {
+			"value": "构建"
+		},
+		"ui.menu.build.build_solution": {
+			"value": "构建解决方案"
+		},
+		"ui.menu.build.rebuild_solution": {
+			"value": "重新生成解决方案"
+		},
+		"ui.menu.build.clean_solution": {
+			"value": "清理解决方案"
+		},
+		"ui.menu.build.build_project": {
+			"value": "构建项目"
+		},
+		"ui.menu.build.build_startup_project": {
+			"value": "构建启动项目"
+		},
+		"ui.menu.tools": {
+			"value": "工具"
+		},
+		"ui.menu.window": {
+			"value": "窗口"
+		},
+		"ui.menu.window.close_all": {
+			"value": "全部关闭"
+		},
+		"ui.menu.help": {
+			"value": "帮助"
+		},
+		"ui.menu.help.bug_report": {
+			"value": "报告 bug"
+		},
+		"ui.menu.help.check_for_updates": {
+			"value": "检查更新..."
+		},
+		"ui.menu.help.about": {
+			"value": "关于 project-afs"
+		},
 		"settings.feature.betaWarning.title": {
 			"value": "Beta功能警告"
 		},

@@ -1,3 +1,4 @@
+#pragma warning disable AFS0001 // Avoid direct access or conversion of Application.Current to prevent tight coupling with AFSApp. Use Dependency Injection for type AFSApp to enhance testability and maintainability instead.
 using Avalonia;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Globalization;

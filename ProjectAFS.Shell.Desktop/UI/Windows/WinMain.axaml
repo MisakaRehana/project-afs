@@ -1,9 +1,81 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:l="clr-namespace:ProjectAFS.Core.MarkupExtensions.Globalization;assembly=ProjectAFS.Core"
+        xmlns:dock="clr-namespace:Dock.Avalonia.Controls;assembly=Dock.Avalonia"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vmb="clr-namespace:ProjectAFS.Shell.Desktop.MVVM.ViewModels.Main"
         mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
         x:Class="ProjectAFS.Shell.Desktop.UI.Windows.WinMain"
         WindowState="Maximized"
+        FontFamily="cjkFonts 全瀨體, SetoFont, Noto Sans CJK SC, Microsoft YaHei UI, Segoe UI, sans-serif"
+        Closing="Window_OnClosing"
         Title="project-afs">
+	<Window.DataContext>
+		<vmb:DesignMainViewModel />
+	</Window.DataContext>
+	<DockPanel>
+	    <Border x:Name="Brd_MenuBar" DockPanel.Dock="Top" BorderBrush="#C0C0C0" BorderThickness="0,0,0,1">
+		    <Menu x:Name="Mnu_Main" Height="26" VerticalAlignment="Top" Background="Transparent">
+			    <MenuItem x:Name="Mdi_File" Header="{l:Localized Key='ui.menu.file', DesignTime='_File'}">
+				    <MenuItem x:Name="Mdi_File_NewSolution" Header="{l:Localized Key='ui.menu.file.new_solution', DesignTime='_New Solution...'}" Command="{Binding NewSolutionCommand}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_File_Save" Header="{l:Localized Key='ui.menu.file.save', DesignTime='_Save'}" Command="{Binding SaveFileCommand}" IsEnabled="{Binding CanSaveCurrentFile}" />
+				    <MenuItem x:Name="Mdi_File_SaveAs" Header="{l:Localized Key='ui.menu.file.save_as', DesignTime='Save _As...'}" Command="{Binding SaveFileAsCommand}" IsEnabled="{Binding CanSaveCurrentFile}" />
+				    <MenuItem x:Name="Mdi_File_SaveAll" Header="{l:Localized Key='ui.menu.file.save_all', DesignTime='Save A_ll'}" Command="{Binding SaveSolutionCommand}" IsEnabled="{Binding CanSaveSolution}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_File_Settings" Header="{l:Localized Key='ui.menu.file.settings', DesignTime='_Settings'}" Command="{Binding OpenSettingsCommand}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_File_Exit" Header="{l:Localized Key='ui.menu.file.exit', DesignTime='_Exit'}" Click="Mdi_File_Exit_OnClick" />
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_Edit" Header="{l:Localized Key='ui.menu.edit', DesignTime='_Edit'}">
+				    <MenuItem x:Name="Mdi_Edit_Undo" Header="{l:Localized Key='ui.menu.edit.undo', DesignTime='_Undo'}" Command="{Binding UndoCommand}" IsEnabled="{Binding CanUndo}" />
+				    <MenuItem x:Name="Mdi_Edit_Redo" Header="{l:Localized Key='ui.menu.edit.redo', DesignTime='_Redo'}" Command="{Binding RedoCommand}" IsEnabled="{Binding CanRedo}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_Edit_Cut" Header="{l:Localized Key='ui.menu.edit.cut', DesignTime='Cu_t'}" Command="{Binding CutCommand}" IsEnabled="{Binding CanCut}" />
+				    <MenuItem x:Name="Mdi_Edit_Copy" Header="{l:Localized Key='ui.menu.edit.copy', DesignTime='_Copy'}" Command="{Binding CopyCommand}" IsEnabled="{Binding CanCopy}" />
+				    <MenuItem x:Name="Mdi_Edit_Paste" Header="{l:Localized Key='ui.menu.edit.paste', DesignTime='_Paste'}" Command="{Binding PasteCommand}" IsEnabled="{Binding CanPaste}" />
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_View" Header="{l:Localized Key='ui.menu.view', DesignTime='_View'}">
+				    <MenuItem x:Name="Mdi_View_ToolWindows" Header="{l:Localized Key='ui.menu.view.tool_windows', DesignTime='_Tool Windows'}"
+				              ItemsSource="{Binding ToolWindows}">
+					    <MenuItem.Styles>
+						    <Style Selector="MenuItem > MenuItem">
+							    <Setter Property="Header" Value="{Binding Title}" />
+						    </Style>
+					    </MenuItem.Styles>
+				    </MenuItem>
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_Build" Header="{l:Localized Key='ui.menu.build', DesignTime='_Build'}">
+				    <MenuItem x:Name="Mdi_Build_BuildSolution" Header="{l:Localized Key='ui.menu.build.build_solution', DesignTime='_Build Solution'}" Command="{Binding BuildSolutionCommand}" IsEnabled="{Binding CanBuildSolution}" />
+				    <MenuItem x:Name="Mdi_Build_RebuildSolution" Header="{l:Localized Key='ui.menu.build.rebuild_solution', DesignTime='_Rebuild Solution'}" Command="{Binding RebuildSolutionCommand}" IsEnabled="{Binding CanBuildSolution}" />
+				    <MenuItem x:Name="Mdi_Build_CleanSolution" Header="{l:Localized Key='ui.menu.build.clean_solution', DesignTime='_Clean Solution'}" Command="{Binding CleanSolutionCommand}" IsEnabled="{Binding CanBuildSolution}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_Build_BuildProject" Header="{l:Localized Key='ui.menu.build.build_project', DesignTime='Build {{Project}}'}" Command="{Binding BuildProjectCommand}" IsEnabled="{Binding CanBuildProject}" />
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_Tools" Header="{l:Localized Key='ui.menu.tools', DesignTime='_Tools'}" ItemsSource="{Binding Tools}">
+				    <MenuItem.Styles>
+					    <Style Selector="MenuItem > MenuItem">
+						    <Setter Property="Header" Value="{Binding Title}" />
+					    </Style>
+				    </MenuItem.Styles>
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_Window" Header="{l:Localized Key='ui.menu.window', DesignTime='_Window'}">
+				    <MenuItem x:Name="Mdi_Window_CloseAll" Header="{l:Localized Key='ui.menu.window.close_all', DesignTime='Close _All'}" Command="{Binding CloseAllDocumentsCommand}" IsEnabled="{Binding CanCloseAllDocuments}" />
+			    </MenuItem>
+			    <MenuItem x:Name="Mdi_Help" Header="{l:Localized Key='ui.menu.help', DesignTime='_Help'}">
+				    <MenuItem x:Name="Mdi_Help_BugReport" Header="{l:Localized Key='ui.menu.help.bug_report', DesignTime='Report a _Bug'}" Command="{Binding ReportBugCommand}" />
+				    <Separator />
+				    <MenuItem x:Name="Mdi_Help_CheckForUpdates" Header="{l:Localized Key='ui.menu.help.check_for_updates', DesignTime='_Check for Updates'}" Command="{Binding CheckForUpdatesCommand}" />
+				    <MenuItem x:Name="Mdi_Help_About" Header="{l:Localized Key='ui.menu.help.about', DesignTime='_About project-afs'}" Command="{Binding ShowAboutDialogCommand}" />
+			    </MenuItem>
+		    </Menu>
+	    </Border>
+	    <Border x:Name="Brd_StatusBar" DockPanel.Dock="Bottom" BorderBrush="#C0C0C0" BorderThickness="1,1,0,0" Height="25" VerticalAlignment="Bottom">
+		    <TextBlock x:Name="Txt_Status" VerticalAlignment="Center" Margin="5,0,0,2" Text="{Binding StatusMessage}" />
+	    </Border>
+	    <Panel>
+		    <dock:DockControl x:Name="Dck_WorkspaceMain" Layout="{Binding WorkspaceLayout}" />
+	    </Panel>
+    </DockPanel>
 </Window>
