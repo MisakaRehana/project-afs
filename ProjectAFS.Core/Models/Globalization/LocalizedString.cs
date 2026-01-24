@@ -1,5 +1,7 @@
 #pragma warning disable AFS0001 // Avoid direct access or conversion of Application.Current to prevent tight coupling with AFSApp. Use Dependency Injection for type AFSApp to enhance testability and maintainability instead.
+using System.Diagnostics;
 using Avalonia;
+using Avalonia.Controls;
 using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 
@@ -9,7 +11,7 @@ namespace ProjectAFS.Core.Models.Globalization;
 /// Represents a localized string with multiple language options.
 /// </summary>
 [Serializable, JsonObject]
-public sealed class LocalizedString
+public sealed class LocalizedString : ILocalizedString
 {
 	[JsonIgnore] public readonly static LocalizedString Empty = new();
 	
@@ -25,6 +27,11 @@ public sealed class LocalizedString
 	/// <returns>Preferred localized string.</returns>
 	public string ToPreferredString()
 	{
+		if (Design.IsDesignMode)
+		{
+			Debug.WriteLine("LocalizedString.ToPreferredString called in design mode. Returning English string.");
+			return English;
+		}
 		var i18n = (Application.Current as AFSApp)?.FetchService<II18nService>();
 		if (i18n == null) return English;
 		return i18n.UsingLanguage.LangCode switch
@@ -36,7 +43,7 @@ public sealed class LocalizedString
 			_ => English
 		};
 	}
-	
+
 	/// <summary>
 	/// Converts to preferred string based on current language settings.
 	/// </summary>

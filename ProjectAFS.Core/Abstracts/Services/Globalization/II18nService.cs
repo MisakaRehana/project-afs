@@ -1,3 +1,4 @@
+using ProjectAFS.Core.Models.Extensibility;
 using ProjectAFS.Core.Models.Globalization;
 
 namespace ProjectAFS.Core.Abstracts.Services.Globalization;
@@ -12,4 +13,6 @@ public interface II18nService
 	public ILanguage FetchPreferredLanguage(LanguageType startLang);
 	public ILanguage FetchLanguage(LanguageType langType, bool strict = true);
 	public ILanguage SwitchLanguage(LanguageType langType);
+	
+	public void ApplyCustomProvider(AFSPluginInfo plugin, II18nCustomProvider provider);
 }

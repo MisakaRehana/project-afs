@@ -29,7 +29,7 @@ public sealed partial class WinSplash : Window
 
 	public WinSplash()
 	{
-// #pragma warning disable AFS0001
+#pragma warning disable AFS0001
 		_app = (AFSApp)Application.Current!;
 #pragma warning restore AFS0001
         _lifetime = Application.Current?.ApplicationLifetime;

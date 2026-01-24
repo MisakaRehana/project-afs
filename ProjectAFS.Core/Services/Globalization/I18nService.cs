@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using ProjectAFS.Core.Abstracts.Services.Configuration;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Abstracts.Services.ResourceManagement;
+using ProjectAFS.Core.Models.Extensibility;
 using ProjectAFS.Core.Models.Globalization;
 using ProjectAFS.Core.Utility;
 using ProjectAFS.Core.Utility.Enumerable;
@@ -25,6 +26,7 @@ public sealed class I18nService : IHostedService, II18nService
 	private readonly IAFSConfiguration _config;
 	private readonly IAFSResManager _resManager;
 	private readonly Dictionary<LanguageType, ILanguage> _languages;
+	private readonly object _customProviderLock = new();
 
 	public I18nService(ILogger<I18nService> logger, IAFSConfiguration config, IAFSResManager resManager) // Dependency Injection
 	{
@@ -128,6 +130,39 @@ public sealed class I18nService : IHostedService, II18nService
 			_config.GetSection("Globalization")["Language"] = langType.GetDescription();
 			_config.SaveAll();
 			return language;
+		}
+	}
+
+	public void ApplyCustomProvider(AFSPluginInfo plugin, II18nCustomProvider provider)
+	{
+		var customTrans = provider.GetAllTranslations();
+		if (customTrans.Count == 0) return;
+
+		lock (_customProviderLock)
+		{
+			foreach (var (langType, translations) in customTrans)
+			{
+				if (!_languages.TryGetValue(langType, out var language))
+				{
+					_logger.LogWarning("Plugin tried to add translations for unsupported language {Lang}. Skipping.", langType);
+					continue;
+				}
+
+				foreach ((string key, var newValue) in translations)
+				{
+					if (language.Texts.ContainsKey(key) && !plugin.IsPermissionGranted(PluginPermission.OverwriteI18n))
+					{
+						_logger.LogError("Security violation {PermissionId}: Plugin {PluginName} ({PluginId}) tried to overwrite existing translation key '{Key}' in language {LanguageType} " +
+						                 "without having the required permission. Skipping this translation.",
+							PluginPermission.OverwriteI18n.GetDescription(), plugin.Name, plugin.PluginId, key, langType);
+						continue;
+					}
+					
+					language.Texts[key] = newValue;
+				}
+				_logger.LogDebug("Plugin {PluginName} ({PluginId}) applied {Count} custom translations to language {LanguageType}.",
+					plugin.Name, plugin.PluginId, translations.Length, langType);
+			}
 		}
 	}
 

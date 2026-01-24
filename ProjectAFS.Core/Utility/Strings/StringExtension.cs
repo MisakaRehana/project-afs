@@ -142,6 +142,24 @@ public static class StringExtension
 				return new string(buffer, 0, pos);
 			}
 		}
+
+		public string ToSafeIDString()
+		{
+			if (string.IsNullOrEmpty(source)) return string.Empty;
+			var sb = new System.Text.StringBuilder(source.Length);
+			foreach (char c in source)
+			{
+				if (char.IsLetterOrDigit(c) || c == '-' || c == '_' || c == '.')
+				{
+					sb.Append(c);
+				}
+				else
+				{
+					sb.Append('_');
+				}
+			}
+			return sb.ToString();
+		}
 	}
 	
 	public static string AdvancedFormat(string template, params object?[] args)

@@ -50,5 +50,5 @@ public sealed class PluginDependency
 	}
 	
 	public bool IsVersionSatisfied(string version) => IsVersionSatisfied(Version.Parse(version));
-	public bool IsVersionSatisfied(System.Version version) => IsVersionSatisfied(Version.Parse(version.ToString()));
+	public bool IsVersionSatisfied(System.Version version) => IsVersionSatisfied(Version.Parse(version.ToString(3)));
 }

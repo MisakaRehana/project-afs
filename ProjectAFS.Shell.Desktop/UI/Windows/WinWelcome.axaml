@@ -1,96 +1,26 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:l="clr-namespace:ProjectAFS.Core.MarkupExtensions.Globalization;assembly=ProjectAFS.Core"
         xmlns:vmb="clr-namespace:ProjectAFS.Shell.Desktop.MVVM.ViewModels.Welcome"
-        xmlns:b="clr-namespace:ProjectAFS.Shell.Desktop.MVVM.Bindings.Welcome"
+        xmlns:pages="clr-namespace:ProjectAFS.Shell.Desktop.UI.Pages.Welcome"
         x:Class="ProjectAFS.Shell.Desktop.UI.Windows.WinWelcome"
         Width="1000" Height="650"
         ExtendClientAreaToDecorationsHint="True"
         Closing="Window_OnClosing"
         FontFamily="cjkFonts 全瀨體, SetoFont, Noto Sans CJK SC, Microsoft YaHei UI, Segoe UI, sans-serif"
         Title="Welcome to project-afs">
-    <Window.DataContext>
-        <vmb:DesignWelcomeViewModel />
-    </Window.DataContext>
-
-    <Grid RowDefinitions="Auto, *" Margin="40,30">
-        <TextBlock Grid.Row="0" Text="project-afs" 
-                   FontSize="44" FontFamily="Sriracha" Foreground="DarkOrange" 
-                   Margin="0,0,0,40" />
-
-        <Grid Grid.Row="1" ColumnDefinitions="*, 450">
-            
-            <DockPanel Grid.Column="0" Margin="0,0,50,0">
-                <TextBlock DockPanel.Dock="Top" Text="{l:Localized Key='welcome.recent_projects', DesignTime='Select a recent project'}"
-                           FontSize="22" Margin="0,0,0,20"/>
-                
-                <TextBox DockPanel.Dock="Top" Watermark="{l:Localized Key='welcome.recent_projects.search_placeholder', DesignTime='Search recent projects...'}"
-                         Margin="0,0,0,10"/>
-
-                <ListBox Background="Transparent" BorderThickness="0" ItemsSource="{Binding RecentProjects}">
-                    <ListBox.Styles>
-                        <Style Selector="ListBoxItem">
-                            <Setter Property="Background" Value="Transparent"/>
-                        </Style>
-
-                        <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter,
-                         ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter,
-                         ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Foreground" Value="{Binding $parent[ListBoxItem].Foreground}"/>
-                        </Style>
-                    </ListBox.Styles>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate DataType="b:RecentProjectItem">
-                            <Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Title}" FontSize="16" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding SolutionFilePath}" FontSize="12" />
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </DockPanel>
-
-            <StackPanel Grid.Column="1" Spacing="10">
-                <TextBlock Text="{l:Localized Key='welcome.get_started', DesignTime='...or get started from an operation'}"
-                           FontSize="22" Margin="0,0,0,10"/>
-
-                <Button HorizontalAlignment="Stretch" Height="80" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Background="Transparent">
-                    <Grid ColumnDefinitions="*" Margin="15,10">
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{l:Localized Key='welcome.new_solution', DesignTime='Create Solution'}" 
-                                       FontSize="18" FontWeight="Medium" Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-            
-                            <TextBlock Text="{l:Localized Key='welcome.new_solution.description', DesignTime='Choose a template with basic fanmade structure to get started'}" 
-                                       FontSize="13" 
-                                       Foreground="{DynamicResource SystemControlDescriptionTextForegroundBrush}"
-                                       TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Grid>
-                </Button>
-                
-                <Button HorizontalAlignment="Stretch" Height="80" BorderThickness="1" BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}" Background="Transparent">
-                    <Grid ColumnDefinitions="*" Margin="15,10">
-                        <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{l:Localized Key='welcome.open_solution', DesignTime='Open a Project or Solution'}"
-                                       FontSize="18" FontWeight="Medium"  Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"/>
-            
-                            <TextBlock Text="{l:Localized Key='welcome.open_solution.description', DesignTime='Open a local AFS project or .afsln file'}" 
-                                       FontSize="13" 
-                                       Foreground="{DynamicResource SystemControlDescriptionTextForegroundBrush}"
-                                       TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Grid>
-                </Button>
-
-                <HyperlinkButton Content="{l:Localized Key='welcome.skip', DesignTime='Continue without fanmade'}"
-                                 HorizontalAlignment="Right" 
-                                 Margin="0,20,0,0" 
-                                 Foreground="#0066CC"
-                                 Command="{Binding SkipWelcomeCommand}"/>
-            </StackPanel>
-        </Grid>
-    </Grid>
+	<Design.DataContext>
+		<vmb:DesignWelcomeViewModel />
+	</Design.DataContext>
+	<Window.DataTemplates>
+		<DataTemplate DataType="{x:Type vmb:PgeHomeViewModel}">
+			<pages:PgeHome />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type vmb:PgeNewProjectViewModel}">
+			<pages:PgeNewProject />
+		</DataTemplate>
+	</Window.DataTemplates>
+	
+	<Grid Margin="40, 30">
+		<TransitioningContentControl Content="{Binding CurrentPage}" />
+	</Grid>
 </Window>

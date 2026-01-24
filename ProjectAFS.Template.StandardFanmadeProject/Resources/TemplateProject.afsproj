@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <ProjectType>StandardFanmadeProject</ProjectType>
+        <ProjectID>{{ProjectID}}</ProjectID>
+        <ProjectName>{{ProjectName}}</ProjectName>
+        <ProjectVersion>1.0</ProjectVersion>
+    </PropertyGroup>
+</Project>

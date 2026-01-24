@@ -8,32 +8,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e6c365-5ce9-40bc-acf2-74218fe3bbea" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core.Analyzers/AnalyzerReleases.Shipped.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core.Analyzers/AnalyzerReleases.Unshipped.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core.Analyzers/Codes/AFSAppAccessAnalyzer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core.Analyzers/ProjectAFS.Core.Analyzers.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Startup/IStartupBridge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginAssemblyLoadContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginInstallerService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupBridge.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupCompletionService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/AFSShellManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/AFSShellPlugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/AFSApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/AFSApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPlugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPlugin.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Build/PluginAutoCopy.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Build/PluginPacking.targets" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Projects/IProject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Projects/IProjectTemplate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/II18nCustomProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/ILocalizedString.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Projects/ProjectCreationContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Projects/ProjectPlatformType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginServiceExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter`1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Xml/XmlConvert.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/Bindings/Welcome/DesignProject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/Bindings/Welcome/DesignProjectTemplate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/Bindings/Welcome/ProjectTemplateItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/PageViewModelBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/PgeHomeViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/PgeNewProjectViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeHome.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeHome.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeNewProject.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeNewProject.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/Data/StandardFanmadeProject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/Data/StandardFanmadeProjectTemplate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/Resources/TemplateProject.afsproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/TemplatePlugin.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/plugin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/avalonia.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectAFS/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPluginService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Extensibility/IPluginService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Shell/IWindowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Shell/IWindowManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/LocalizedExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/LocalizedExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/II18nService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Globalization/II18nService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/AFSPluginInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/AFSPluginInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/PluginDependency.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/PluginDependency.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/PluginStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/PluginStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/IValue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/IValue.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LocalizedString.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LocalizedString.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/ProjectAFS.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/ProjectAFS.Core.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Services/ServiceExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/ServiceExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupHostService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupHostService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupProgressProxy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Startup/StartupProgressProxy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/UI/WinSplash.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/UI/WinSplash.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Enumerable/EnumExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Enumerable/EnumExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Strings/StringExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Core/Utility/Strings/StringExtension.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Resources/Languages/zh-Hans.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Resources/Languages/zh-Hans.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/WelcomeViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/WelcomeViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectAFS.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.sln.DotSettings" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectAFS.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectAFS.slnx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +67,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="XML File" />
         <option value="JSON File" />
       </list>
     </option>
@@ -70,7 +91,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/24f5857a073841e189d805de9660178ef49910/ea/75f83c80/Boolean.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/87d1d12bdef24cf09ec54217efab26fa8800/00/dafa4b0f/Version.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b394f578dc77436fb36464530f63b8633ea00/f3/3f423c8b/ValueEnumerable`2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core.Analyzers/Codes/AFSAppAccessAnalyzer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e99770f462e4466791bd4b0e5f11981c2de00/ca/2cc587c7/DockControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/AFSApp.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/AFSChan/IAFSChanManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Configuration/IAFSConfigSection.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,15 +105,14 @@
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Shell/IWindowManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Abstracts/Services/Startup/IStartupBridge.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/MarkupExtensions/Globalization/LocalizedExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Bindings/Welcome/RecentProjectItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Configuration/AFSPathOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/AFSPluginInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Extensibility/InstallerOperation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageChangedEventArgs.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Globalization/LanguageType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Projects/ProjectPlatformType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Startup/StartupProgressReport.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/Startup/StartupStage.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Models/ViewModelBindings/WelcomeViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/AFSConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Configuration/ConfigService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -108,6 +128,7 @@
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Enumerable/EnumExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Hosting/DependencyInjectionExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Json/EnumDescriptionConverter`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.Linux.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.MacOS.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Native/NativeMessageBox.Win32.cs" root0="FORCE_HIGHLIGHTING" />
@@ -118,16 +139,23 @@
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSDispatcher.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTaskMethodBuilder`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Threading/AFSTask`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Core/Utility/Xml/XmlConvert.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Launcher.Desktop/AFSAppDesktop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/AFSShellManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/Bindings/Main/ToolWindowItem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Main/MainViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeNewProject.axaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeNewProject.axaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinMain.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinMain.axaml.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/UI/Windows/WinWelcome.axaml.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/Data/StandardFanmadeProject.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectAFS.Template.StandardFanmadeProject/TemplatePlugin.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -142,18 +170,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET 项目.ProjectAFS.Launcher.Desktop.executor": "Run",
+    ".NET 项目.ProjectAFS.Launcher.Desktop.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "XThreadsFramesViewSplitterKey": "0.50092083",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.language.and.region",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -216,7 +245,10 @@
       <workItem from="1768875084545" duration="11650000" />
       <workItem from="1768948284164" duration="11947000" />
       <workItem from="1769045257283" duration="12666000" />
-      <workItem from="1769059363801" duration="15679000" />
+      <workItem from="1769059363801" duration="42770000" />
+      <workItem from="1769220082823" duration="24495000" />
+      <workItem from="1769249441900" duration="3564000" />
+      <workItem from="1769254381126" duration="5737000" />
     </task>
     <servers />
   </component>
@@ -244,17 +276,56 @@
           <option name="timeStamp" value="3" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/ProjectAFS.Core/Services/Globalization/I18nService.cs</url>
-          <line>52</line>
-          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Core\Services\Globalization\I18nService.cs" containingFunctionPresentation="方法 'FetchPreferredLanguage'">
+          <url>file://$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginService.cs</url>
+          <line>275</line>
+          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Core\Services\Extensibility\PluginService.cs" containingFunctionPresentation="方法 'LoadSinglePluginAsync'">
             <startOffsets>
-              <option value="1949" />
+              <option value="9707" />
             </startOffsets>
             <endOffsets>
-              <option value="2025" />
+              <option value="9775" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/PgeNewProjectViewModel.cs</url>
+          <line>26</line>
+          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Shell.Desktop\MVVM\ViewModels\Welcome\PgeNewProjectViewModel.cs" containingFunctionPresentation="构造函数 'PgeNewProjectViewModel'">
+            <startOffsets>
+              <option value="882" />
+            </startOffsets>
+            <endOffsets>
+              <option value="902" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProjectAFS.Core/Services/Extensibility/PluginServiceExtension.cs</url>
+          <line>114</line>
+          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Core\Services\Extensibility\PluginServiceExtension.cs" containingFunctionPresentation="方法 'GetProjectTemplatesFromPlugins'">
+            <startOffsets>
+              <option value="3590" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3640" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/ProjectAFS.Shell.Desktop/MVVM/ViewModels/Welcome/PgeNewProjectViewModel.cs</url>
+          <line>29</line>
+          <properties documentPath="F:\C#\Misaka Rehana (Misaka Castle)\123 ArcFanmade Studio\ProjectAFS.Shell.Desktop\MVVM\ViewModels\Welcome\PgeNewProjectViewModel.cs" containingFunctionPresentation="构造函数 'PgeNewProjectViewModel'">
+            <startOffsets>
+              <option value="1057" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1173" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

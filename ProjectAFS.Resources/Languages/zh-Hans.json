@@ -47,6 +47,21 @@
 		"welcome.skip": {
 			"value": "继续但无需自制"
 		},
+		"welcome.new_project.title": {
+			"value": "创建新项目"
+		},
+		"welcome.new_project.recent_templates": {
+			"value": "选择最近使用的模板"
+		},
+		"welcome.new_project.search_templates": {
+			"value": "搜索模板 (Alt+S)"
+		},
+		"ui.common.button.prev": {
+			"value": "上一步"
+		},
+		"ui.common.button.next": {
+			"value": "下一步"
+		},
 		"ui.menu.file": {
 			"value": "文件"
 		},

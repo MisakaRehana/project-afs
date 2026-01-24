@@ -1,0 +1,25 @@
+{
+	"id": "ProjecAFS.Template.StandardFanmadeProject",
+	"name": {
+		"en": "Standard Fanmade Project Template",
+		"ja": "標準的な自作プロジェクトテンプレート",
+		"zh-Hans": "标准自制项目模板",
+		"zh-Hant": "標準自製項目模板"
+	},
+	"version": "0.1.0",
+	"author": "Misaka Castle Group and project-afs contributors",
+	"entry_point": "ProjectAFS.Template.StandardFanmadeProject.dll",
+	"description": {
+		"en": "A template plugin for creating standard fanmade projects in Project AFS.",
+		"ja": "Project AFSで標準的な自作プロジェクトを作成するためのテンプレートプラグインです。",
+		"zh-Hans": "用于在Project AFS中创建标准自制项目的模板插件。",
+		"zh-Hant": "用於在Project AFS中創建標準自製項目的模板插件。"
+	},
+	"dependencies": [
+		{
+			"id": "ProjectAFS.Core",
+			"version": ">=0.1.0",
+			"optional": false
+		}
+	]
+}

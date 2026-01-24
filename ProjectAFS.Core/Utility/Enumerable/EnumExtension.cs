@@ -110,3 +110,14 @@ public static class EnumExtension
 		return Activator.CreateInstance(enumType)!;
 	}
 }
+
+public static class Enumerable
+{
+	public static IEnumerable<T> Create<T>(params T[] items)
+	{
+		foreach (var item in items)
+		{
+			yield return item;
+		}
+	}
+}

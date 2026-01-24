@@ -1,56 +1,67 @@
-using System.Collections.ObjectModel;
+
+// ReSharper disable MemberCanBeProtected.Global
+
+using Avalonia.Controls;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
 using ProjectAFS.Core;
-using ProjectAFS.Shell.Desktop.MVVM.Bindings.Welcome;
 using ProjectAFS.Shell.Desktop.UI.Windows;
-// ReSharper disable MemberCanBeProtected.Global
 
 namespace ProjectAFS.Shell.Desktop.MVVM.ViewModels.Welcome;
 
 public partial class WelcomeViewModel : ObservableObject
 {
-	private readonly AFSApp _app;
-	private readonly WinWelcome _window;
+	private readonly AFSApp? _app;
+	private readonly WinWelcome? _window;
+	private readonly Dictionary<string, ObservableObject> _pages = new();
 	
 	[ObservableProperty]
-	private ObservableCollection<RecentProjectItem> recentProjects = [];
+	private ObservableObject _currentPage;
 
-	public WelcomeViewModel(AFSApp app, WinWelcome window)
+	public WelcomeViewModel(AFSApp? app, WinWelcome? window)
 	{
 		_app = app;
 		_window = window;
+		_currentPage = app?.CreateInstanceWithInjection<PgeHomeViewModel>(this)!;
+		_pages[typeof(PgeHomeViewModel).FullName!] = _currentPage; // Register initial page
 	}
 	
-	[RelayCommand]
-	public virtual void SkipWelcome()
+	public void NavigateToPage<TPageVM>() where TPageVM : ObservableObject
+	{
+		if (Design.IsDesignMode) return; // Use design-time data in axaml designer
+		string pageVMType = typeof(TPageVM).FullName!;
+		if (_pages.TryGetValue(pageVMType, out var page))
+		{
+			CurrentPage = page;
+		}
+		else
+		{
+			var pageVMInstance = _app!.CreateInstanceWithInjection<TPageVM>(this);
+			_pages[pageVMType] = pageVMInstance;
+			CurrentPage = pageVMInstance;
+		}
+	}
+
+	public virtual void ExecuteSkipWelcome()
 	{
 		Dispatcher.UIThread.Invoke(() =>
 		{
-			_window.ShouldShutdown = false;
+			_window!.ShouldShutdown = false;
 			_window.Close();
-			var main = _app.CreateInstanceWithInjection<WinMain>();
+			var main = _app!.CreateInstanceWithInjection<WinMain>();
 			main.Show();
 		});
 	}
 }
 
-public sealed partial class DesignWelcomeViewModel : WelcomeViewModel
+public sealed class DesignWelcomeViewModel : WelcomeViewModel
 {
 	public DesignWelcomeViewModel() : base(null!, null!)
 	{
-		RecentProjects =
-		[
-			new RecentProjectItem() {Title = "Sample Project 1", SolutionFilePath = @"C:\Path\To\SampleProject1.afsln"},
-			new RecentProjectItem() {Title = "Sample Project 2", SolutionFilePath = @"C:\Path\To\SampleProject2.afsln"},
-			new RecentProjectItem() {Title = "Sample Project 3", SolutionFilePath = @"C:\Path\To\SampleProject3.afsln"},
-			new RecentProjectItem() {Title = "Sample Project 4", SolutionFilePath = @"C:\Path\To\SampleProject4.afsln"}
-		];
+		CurrentPage = new DesignPgeHomeViewModel();
 	}
-	
-	public override void SkipWelcome()
+
+	public override void ExecuteSkipWelcome()
 	{
 		// No operation in design mode
 	}

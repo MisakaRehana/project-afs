@@ -3,60 +3,68 @@ using ProjectAFS.Core.Utility.Enumerable;
 
 namespace ProjectAFS.Core.Utility.Json;
 
-public sealed class EnumDescriptionConverter<T> : JsonConverter<T> where T : Enum
+/// <summary>
+/// Provides a general JSON converter that serializes and deserializes enum values based on their descriptions.<br />
+/// <b>Note:</b> To use this converter with nested types or collections (e.g., List&lt;T&gt;, T[], etc.), use <c>ItemConverter</c> in <see cref="JsonPropertyAttribute"/> instead of <see cref="JsonConverterAttribute"/>.
+/// </summary>
+/// <seealso cref="EnumDescriptionConverter{T}"/>
+public sealed class EnumDescriptionConverter : JsonConverter
 {
-	public override bool CanRead => true;
-	public override bool CanWrite => true;
 	public bool Strict { get; }
 	
-	public EnumDescriptionConverter()
-	{
-		Strict = false;
-	}
+	public EnumDescriptionConverter() : this(false) {}
 	
-	public EnumDescriptionConverter(bool strict)
+	public EnumDescriptionConverter(bool strict) => Strict = strict;
+
+	public override bool CanConvert(Type objectType)
 	{
-		Strict = strict;
+		var type = Nullable.GetUnderlyingType(objectType) ?? objectType;
+		return type.IsEnum;
 	}
 
-	public override T ReadJson(JsonReader reader, Type objectType, T? existingValue, bool hasExistingValue, JsonSerializer serializer)
+	public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
 	{
-		try
+		var enumType = Nullable.GetUnderlyingType(objectType) ?? objectType;
+		if (reader.TokenType == JsonToken.Null) return null;
+
+		if (reader.TokenType == JsonToken.String)
 		{
-			if (reader.TokenType == JsonToken.String)
+			string enumString = reader.Value!.ToString()!;
+
+			foreach (object? enumValue in Enum.GetValues(enumType))
 			{
-				string? enumString = reader.Value!.ToString();
-				foreach (T enumValue in Enum.GetValues(typeof(T)))
+				string? description = (enumValue as Enum)?.GetDescription(Strict);
+				
+				if (string.Equals(description, enumString, StringComparison.OrdinalIgnoreCase))
 				{
-					if (enumValue.GetDescription(Strict).Equals(enumString, StringComparison.OrdinalIgnoreCase))
-					{
-						return enumValue;
-					}
+					return enumValue;
 				}
 			}
 		}
-		catch (InvalidOperationException ex)
+
+		if (Strict)
 		{
-			throw new JsonSerializationException($"Unable to convert '{reader.Value}' to enum '{typeof(T)}' in strict mode.", ex);
+			throw new JsonSerializationException($"Unable to convert '{reader.Value}' to enum '{enumType}' in strict mode.");
 		}
-		throw new JsonSerializationException($"Unable to convert '{reader.Value}' to enum '{typeof(T)}'.");
+		
+		return Enum.Parse(enumType, reader.Value!.ToString()!);
 	}
 
-	public override void WriteJson(JsonWriter writer, T? value, JsonSerializer serializer)
+	public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
 	{
-		try
+		if (value == null)
 		{
-			if (value == null)
-			{
-				writer.WriteNull();
-				return;
-			}
-			string description = value.GetDescription(Strict);
-			writer.WriteValue(description);
+			writer.WriteNull();
+			return;
 		}
-		catch (InvalidOperationException ex)
+
+		if (value is Enum e)
 		{
-			throw new JsonSerializationException($"Unable to convert enum '{typeof(T)}' to string in strict mode.", ex);
+			writer.WriteValue(e.GetDescription(Strict));
+		}
+		else
+		{
+			writer.WriteValue(value.ToString());
 		}
 	}
 }

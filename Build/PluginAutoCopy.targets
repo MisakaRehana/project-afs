@@ -1,0 +1,24 @@
+<Project>
+    <Target Name="PluginAutoCopy" AfterTargets="PluginPacking">
+        <PropertyGroup>
+            <PluginSourceFile>$(OutputPath)$(PluginId).afp</PluginSourceFile>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <_LauncherDirs Include="$([System.IO.Directory]::GetDirectories('$(SolutionDir)', 'ProjectAFS.Launcher.*'))" />
+
+            <LauncherPluginsDirs Include="@(_LauncherDirs->'%(FullPath)\bin\$(Configuration)\$(TargetFramework)\Plugins\')" />
+        </ItemGroup>
+
+        <Message Importance="high" Text="[ProjectAFS] Source File: $(PluginSourceFile)" />
+        <Message Importance="high" Text="[ProjectAFS] Found Destinations: @(LauncherPluginsDirs)" />
+
+        <MakeDir Directories="@(LauncherPluginsDirs)" Condition="'@(LauncherPluginsDirs)' != ''" />
+
+        <Copy
+                SourceFiles="$(PluginSourceFile)"
+                DestinationFolder="%(LauncherPluginsDirs.Identity)"
+                SkipUnchangedFiles="true"
+                Condition="'@(LauncherPluginsDirs)' != '' And Exists('$(PluginSourceFile)')" />
+    </Target>
+</Project>

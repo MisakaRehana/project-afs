@@ -1,0 +1,34 @@
+<Project>
+  <Target Name="PluginPacking" AfterTargets="Build" Condition="'$(SkipPluginPacking)' != 'true'">
+    <PropertyGroup>
+      <ActualPluginId Condition="'$(PluginId)' == ''">$(MSBuildProjectName)</ActualPluginId>
+      <PluginStagingDir>$(OutputPath)staging\</PluginStagingDir>
+      <PackageOutput>$(OutputPath)$(ActualPluginId).afp</PackageOutput>
+    </PropertyGroup>
+    
+    <Message Importance="high" Text="[ProjectAFS] Packing plugin: $(ActualPluginId)..." />
+
+    <RemoveDir Directories="$(PluginStagingDir)" />
+    <Delete Files="$(PackageOutput)" />
+    
+    <MakeDir Directories="$(PluginStagingDir);$(PluginStagingDir)lib" />
+    
+    <Copy SourceFiles="$(OutputPath)plugin.json" 
+          DestinationFolder="$(PluginStagingDir)" 
+          Condition="Exists('$(OutputPath)plugin.json')" />
+    
+    <ItemGroup>
+      <_PluginFiles Include="$(OutputPath)*.dll;$(OutputPath)*.deps.json;$(OutputPath)*.runtimeconfig.json;$(OutputPath)*.pdb" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(_PluginFiles)" DestinationFolder="$(PluginStagingDir)lib" />
+    
+    <ZipDirectory SourceDirectory="$(PluginStagingDir)" 
+                  DestinationFile="$(PackageOutput)" 
+                  Overwrite="true" />
+                  
+    <RemoveDir Directories="$(PluginStagingDir)" />
+    
+    <Message Importance="high" Text="[ProjectAFS] Packed plugin to $(PackageOutput)" />
+  </Target>
+</Project>

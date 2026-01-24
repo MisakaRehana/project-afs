@@ -1,10 +1,14 @@
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Avalonia.Controls;
+using Avalonia.Logging;
 using Newtonsoft.Json;
+using ProjectAFS.Core.Abstracts.Services.Globalization;
 
 namespace ProjectAFS.Core.Models.Globalization;
 
 [Serializable]
-public readonly struct IValue
+public readonly struct IValue : ILocalizedString
 {
 	[JsonProperty("value")] public readonly string Value;
 
@@ -25,6 +29,11 @@ public readonly struct IValue
 	public override string ToString()
 	{
 		return Value;
+	}
+
+	public string ToPreferredString()
+	{
+		return ToString(); // to allow Harmony patch the same logic as ToString()
 	}
 
 	/// <summary>

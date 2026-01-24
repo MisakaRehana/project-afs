@@ -9,6 +9,7 @@ using ProjectAFS.Core.Abstracts.Services.Configuration;
 using ProjectAFS.Core.Abstracts.Services.Extensibility;
 using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Models.Extensibility;
+using ProjectAFS.Core.Models.Globalization;
 using ProjectAFS.Core.Models.Startup;
 using ProjectAFS.Core.Services.Startup;
 using ProjectAFS.Core.Utility.SharpCompress;
@@ -16,13 +17,14 @@ using ProjectAFS.Core.Utility.Threading;
 using ProjectAFS.Core.Utility.Collections;
 using ProjectAFS.Core.Utility.Strings;
 using SharpCompress.Archives.Zip;
+using SVersion = SemanticVersioning.Version;
 
 namespace ProjectAFS.Core.Services.Extensibility;
 
 /// <summary>
-/// Represents the plugin service responsible for managing plugins.
+/// Represents the core service of AEF (project-afs Extensibility Framework) responsible for managing plugins.
 /// </summary>
-public sealed class PluginService : IHostedService, IPluginService
+public sealed partial class PluginService : IHostedService, IPluginService
 {
 	public const string ManifestFileName = "plugin.json";
 	private const string PluginExt = ".afp";
@@ -66,6 +68,7 @@ public sealed class PluginService : IHostedService, IPluginService
 	public async Task StopAsync(CancellationToken cancellationToken)
 	{
 		SaveEnabledPluginsConfiguration();
+		
 		await AFSTask.WhenAll(_plugins.Values
 			.Where(pc => pc.IsLoaded)
 			.Select(pc => UnloadSinglePluginAsync(pc.Info.PluginId, cancellationToken)));
@@ -78,7 +81,6 @@ public sealed class PluginService : IHostedService, IPluginService
 		foreach (var pluginType in plugins)
 		{
 			RegisterBuiltInPlugin(pluginType);
-			_builtInPlugins.Add(pluginType);
 		}
 	}
 	
@@ -126,7 +128,7 @@ public sealed class PluginService : IHostedService, IPluginService
 				_logger.LogError(ex, "Failed to load plugin package {PackagePath}.", packagePath);
 			}
 		}
-		
+
 		return _plugins.Values.Select(pc => pc.Info);
 	}
 	
@@ -144,11 +146,16 @@ public sealed class PluginService : IHostedService, IPluginService
 		_builtInPlugins.Add(pluginType);
 	}
 	
+	public IEnumerable<PluginContext> GetLoadedPlugins()
+	{
+		return _plugins.Values;
+	}
+	
 	public async AFSTask ExecutePendingOperationsAsync(CancellationToken cancellationToken = default)
 	{
 		await _installer.ExecutePendingOperationsAsync(_progress, cancellationToken);
 	}
-
+	
 	public async AFSTask LoadPluginsAsync(bool skipDiscovering = false, CancellationToken cancellationToken = default)
 	{
 		if (!skipDiscovering)
@@ -163,7 +170,8 @@ public sealed class PluginService : IHostedService, IPluginService
 		foreach (var plugin in pluginsToLoad.Where(p => !p.IsBuiltIn))
 		{
 			if (cancellationToken.IsCancellationRequested) break;
-			if (plugin.Status != PluginStatus.Enabled) continue;
+			var ctx = _plugins[plugin.PluginId];
+			if (plugin.Status != PluginStatus.Enabled && ctx.IsLoaded) continue;
 			
 			await LoadSinglePluginAsync(plugin.PluginId, cancellationToken);
 		}
@@ -176,8 +184,8 @@ public sealed class PluginService : IHostedService, IPluginService
 			var info = new AFSPluginInfo()
 			{
 				PluginId = pluginType.FullName!,
-				Name = $"{pluginType.Name} (Built-in)",
-				Version = new Version(1, 0, 0, 0),
+				Name = new LocalizedString() { English = $"{pluginType.Name} (Built-in)"},
+				Version = new SVersion(1, 0, 0),
 				Status = PluginStatus.Enabled,
 				IsBuiltIn = true
 			};
@@ -196,8 +204,7 @@ public sealed class PluginService : IHostedService, IPluginService
 			_logger.LogInformation("Built-in plugin {PluginId} loaded.", info.PluginId);
 		}
 	}
-
-
+	
 	private async AFSTask<PluginContext?> LoadSinglePluginAsync(string pluginId, CancellationToken cancellationToken = default)
 	{
 		if (!_plugins.TryGetValue(pluginId, out var ctx) || ctx.IsLoaded)
@@ -222,7 +229,7 @@ public sealed class PluginService : IHostedService, IPluginService
 			ctx.SetStatus(PluginStatus.Loading);
 			PluginLoading?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Loading)
 			{
-				PluginName = ctx.Info.Name
+				PluginName = ctx.Info.Name.ToPreferredString()
 			});
 			_progress.Report(new StartupProgressReport(StringExtension.AdvancedFormat(
 				_i18n["splash.init.plugin"].ToString(), ctx.Info.Name), StartupStage.PluginLoading, isAutoLocalized: false));
@@ -253,10 +260,13 @@ public sealed class PluginService : IHostedService, IPluginService
 
 			ctx.SetLoadContext(alc);
 			ctx.RegisterInstance(pluginInstance);
+			ctx.BindProvidersFromPlugin(_app, _i18n);
+			ctx.BindProjectTemplatesFromPlugin(_app, this, _logger);
+			pluginInstance.OnEnable();
 			ctx.SetStatus(PluginStatus.Enabled);
 			PluginLoaded?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Enabled)
 			{
-				PluginName = ctx.Info.Name
+				PluginName = ctx.Info.Name.ToPreferredString()
 			});
 			return ctx;
 		}
@@ -278,10 +288,10 @@ public sealed class PluginService : IHostedService, IPluginService
 		{
 			return;
 		}
-
 		var dependents = _plugins.Values
 			.Where(pc => pc.IsLoaded && pc.Info.Dependencies.Any(d => d.PluginId == pluginId))
 			.ToList();
+
 		if (dependents.Count != 0)
 		{
 			string depList = string.Join(", ", dependents.Select(dc => $"{dc.Info.Name} ({dc.Info.PluginId})"));
@@ -311,7 +321,7 @@ public sealed class PluginService : IHostedService, IPluginService
 			ctx.SetStatus(PluginStatus.Enabled); // back to enabled state, can be loaded again later
 			PluginUnloaded?.Invoke(this, new PluginEventArgs(pluginId, PluginStatus.Enabled)
 			{
-				PluginName = ctx.Info.Name
+				PluginName = ctx.Info.Name.ToPreferredString()
 			});
 		}
 		finally
@@ -451,6 +461,15 @@ public sealed class PluginService : IHostedService, IPluginService
 
 		foreach (var dep in ctx.Info.Dependencies)
 		{
+			if (TryGetSystemDependency(dep.PluginId, out var depVersion))
+			{
+				if (!dep.IsVersionSatisfied(depVersion) && !dep.IsOptional)
+				{
+					missing.Add($"Dependency '{dep.PluginId}' required by plugin '{pluginId}' requires version '{dep.VersionConstraint}' but found '{depVersion}'.");
+				}
+				continue;
+			}
+
 			if (!_plugins.TryGetValue(dep.PluginId, out var depCtx))
 			{
 				if (!dep.IsOptional)
@@ -473,8 +492,10 @@ public sealed class PluginService : IHostedService, IPluginService
 		var sorted = new List<AFSPluginInfo>();
 		var visited = new HashSet<string>();
 		var visiting = new HashSet<string>(); // to detect cycle-dependency
-		var pluginsToProcess = _plugins.Values.Where(pc => pc.Info.Status == PluginStatus.Enabled);
-
+		
+		// var pluginsToProcess = _plugins.Values.Where(pc => pc.Info.Status == PluginStatus.Enabled);
+		var pluginsToProcess = _plugins.Select(kvp => kvp.Value).Where(pc => pc is {Info.Status: PluginStatus.Enabled} or {Info.Status: PluginStatus.Disabled, IsLoaded: false});
+		
 		foreach (var context in pluginsToProcess)
 		{
 			if (!visited.Contains(context.Info.PluginId))
@@ -522,6 +543,10 @@ public sealed class PluginService : IHostedService, IPluginService
 				{
 					var dep = deps[i];
 					if (dep.IsOptional) continue;
+					if (TryGetSystemDependency(dep.PluginId, out _))
+					{
+						continue; // system dependency found
+					}
 
 					if (_plugins.TryGetValue(dep.PluginId, out var depContext))
 					{
@@ -537,5 +562,19 @@ public sealed class PluginService : IHostedService, IPluginService
 				}
 			}
 		}
+	}
+	
+	private static bool TryGetSystemDependency(string dependencyId, out Version version)
+	{
+		var asmList = AppDomain.CurrentDomain.GetAssemblies()
+			.Where(asm => asm.GetName().Name == dependencyId);
+		foreach (var asm in asmList)
+		{
+			version = asm.GetName().Version ?? new Version(0, 0, 0, 0);
+			return true;
+		}
+		
+		version = new Version(0, 0, 0, 0);
+		return false;
 	}
 }
