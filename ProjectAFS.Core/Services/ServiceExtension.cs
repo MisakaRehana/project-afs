@@ -7,6 +7,7 @@ using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Abstracts.Services.ResourceManagement;
 using ProjectAFS.Core.Abstracts.Services.Shell;
 using ProjectAFS.Core.Abstracts.Services.Startup;
+using ProjectAFS.Core.Abstracts.Services.Storage;
 using ProjectAFS.Core.Models.Configuration;
 using ProjectAFS.Core.Services.AFSChan;
 using ProjectAFS.Core.Services.Configuration;
@@ -14,6 +15,7 @@ using ProjectAFS.Core.Services.Extensibility;
 using ProjectAFS.Core.Services.Globalization;
 using ProjectAFS.Core.Services.ResourceManagement;
 using ProjectAFS.Core.Services.Startup;
+using ProjectAFS.Core.Services.Storage;
 
 namespace ProjectAFS.Core.Services;
 
@@ -83,6 +85,12 @@ public static class ServiceExtension
 			services.AddHostedService<StartupHostService>();
 			services.AddSingleton<IStartupBridge, StartupBridge>();
 			services.AddSingleton<IWindowManager>(sp => (IWindowManager)sp.GetRequiredService<IStartupBridge>());
+			return services;
+		}
+
+		public IServiceCollection AddStorageProvider()
+		{
+			services.AddSingleton<IStorageService, StorageService>();
 			return services;
 		}
 		

@@ -51,7 +51,7 @@ public sealed class I18nService : IHostedService, II18nService
 
 	public ILanguage FetchPreferredLanguage()
 	{
-		string preferredLang = _config.GetSection("Globalization").TryGetValue("Language", DetermineBySystemLanguage());
+		string preferredLang = _config.GetSection("Core.Globalization").TryGetValue("Language", DetermineBySystemLanguage());
 		var langType = EnumExtension.FindByDescription<LanguageType>(preferredLang);
 		if (langType == default)
 		{
@@ -127,7 +127,7 @@ public sealed class I18nService : IHostedService, II18nService
 		{
 			_logger.LogDebug("Language switched from {FromLang} to {ToLang}.", UsingLanguage.LangCode, language.LangCode);
 			UsingLanguage = language;
-			_config.GetSection("Globalization")["Language"] = langType.GetDescription();
+			_config.GetSection("Core.Globalization")["Language"] = langType.GetDescription();
 			_config.SaveAll();
 			return language;
 		}
@@ -236,7 +236,7 @@ public sealed class I18nService : IHostedService, II18nService
 		
 	private LanguageType FetchPreferredLanguageType()
 	{
-		string preferredLang = _config.GetSection("Globalization").TryGetValue("Language", DetermineBySystemLanguage());
+		string preferredLang = _config.GetSection("Core.Globalization").TryGetValue("Language", DetermineBySystemLanguage());
 		var langType = EnumExtension.FindByDescription<LanguageType>(preferredLang);
 		if (langType == default)
 		{

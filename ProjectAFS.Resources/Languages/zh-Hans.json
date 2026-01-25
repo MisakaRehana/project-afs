@@ -6,6 +6,10 @@
 			"value": "初始化 project-afs ({curr}/{total})",
 			"value_c": "诶？已经早上了吗……(｡-ω-)ﾉﾞ好困啊…… ({curr}/{total})"
 		},
+		"splash.init.core.storage": {
+			"value": "初始化存储系统 ({curr}/{total})",
+			"value_c": "打开储物柜，拿出今天要用的东西~ ({curr}/{total})"
+		},
 		"splash.init.plugin.pending.install": {
 			"value": "安装插件 {pluginId} ({curr}/{total})",
 			"value_c": "欢迎新伙伴 {pluginId} 加入大家庭~ ({curr}/{total})"
@@ -55,6 +59,30 @@
 		},
 		"welcome.new_project.search_templates": {
 			"value": "搜索模板 (Alt+S)"
+		},
+		"welcome.config_project.title": {
+			"value": "配置新项目"
+		},
+		"welcome.config_project.project_name": {
+			"value": "项目名称"
+		},
+		"welcome.config_project.location": {
+			"value": "位置"
+		},
+		"welcome.config_project.solution_name": {
+			"value": "解决方案名称"
+		},
+		"welcome.config_project.place_same_directory": {
+			"value": "将解决方案和项目放在同一目录中"
+		},
+		"welcome.config_project.create_hint": {
+			"value": "项目 将在“{location}”中创建"
+		},
+		"welcome.config_project.create_hint.solution": {
+			"value": "解决方案 将在“{location}”中创建"
+		},
+		"welcome.config_project.button.create": {
+			"value": "创建"
 		},
 		"ui.common.button.prev": {
 			"value": "上一步"

@@ -6,6 +6,10 @@
 			"value": "project-afsの初期化 ({curr}/{total})",
 			"value_c": "AFSちゃんを起こしてるよ…(｡-ω-)ﾉﾞまだ眠いなぁ… ({curr}/{total})"
 		},
+		"splash.init.core.storage": {
+			"value": "ストレージシステムの初期化 ({curr}/{total})",
+			"value_c": "ロッカーを開けて、今日使うものを取り出してるよ〜 ({curr}/{total})"
+		},
 		"splash.init.plugin.pending.install": {
 			"value": "プラグイン {pluginId} のインストール ({curr}/{total})",
 			"value_c": "ようこそ {pluginId} ちゃん、仲間入りだよ〜！ ({curr}/{total})"
@@ -45,6 +49,45 @@
 		},
 		"welcome.skip": {
 			"value": "自作機能を使わずに続行"
+		},
+		"welcome.new_project.title": {
+			"value": "新しいプロジェクトの作成"
+		},
+		"welcome.new_project.recent_templates": {
+			"value": "最近使用した雛形を選択"
+		},
+		"welcome.new_project.search_templates": {
+			"value": "雛形を検索 (Alt+S)"
+		},
+		"welcome.config_project.title": {
+			"value": "新しいプロジェクトの設定"
+		},
+		"welcome.config_project.project_name": {
+			"value": "プロジェクト名"
+		},
+		"welcome.config_project.location": {
+			"value": "場所"
+		},
+		"welcome.config_project.solution_name": {
+			"value": "ソリューション名"
+		},
+		"welcome.config_project.place_same_directory": {
+			"value": "ソリューションとプロジェクトを同じディレクトリに配置する"
+		},
+		"welcome.config_project.create_hint": {
+			"value": "プロジェクトは「{location}」に作成されます"
+		},
+		"welcome.config_project.create_hint.solution": {
+			"value": "ソリューションは「{location}」に作成されます"
+		},
+		"welcome.config_project.button.create": {
+			"value": "作成"
+		},
+		"ui.common.button.prev": {
+			"value": "前へ"
+		},
+		"ui.common.button.next": {
+			"value": "次へ"
 		},
 		"ui.menu.file": {
 			"value": "ファイル"

@@ -40,6 +40,20 @@ public readonly partial struct AFSTask // AFSTask Expand Utility -- Provides sta
 		return new AFSTask(Task.Delay(delay).ContinueWith(_ => { }, CancellationToken.None, TaskContinuationOptions.DenyChildAttach, scheduler));
 	}
 	
+	public static AFSTask Delay(int millisecondsDelay, CancellationToken cancellationToken)
+	{
+		bool isMainThreadTask = AFSDispatcher.IsMainThread;
+		var scheduler = isMainThreadTask ? TaskScheduler.Default : TaskScheduler.FromCurrentSynchronizationContext();
+		return new AFSTask(Task.Delay(millisecondsDelay, cancellationToken).ContinueWith(_ => { }, cancellationToken, TaskContinuationOptions.DenyChildAttach, scheduler));
+	}
+	
+	public static AFSTask Delay(TimeSpan delay, CancellationToken cancellationToken)
+	{
+		bool isMainThreadTask = AFSDispatcher.IsMainThread;
+		var scheduler = isMainThreadTask ? TaskScheduler.Default : TaskScheduler.FromCurrentSynchronizationContext();
+		return new AFSTask(Task.Delay(delay, cancellationToken).ContinueWith(_ => { }, cancellationToken, TaskContinuationOptions.DenyChildAttach, scheduler));
+	}
+	
 	public static async AFSTask SwitchToMainThread()
 	{
 #pragma warning disable 618
@@ -113,79 +127,71 @@ public readonly partial struct AFSTask // AFSTask Expand Utility -- Provides sta
 		return await WhenAll((IEnumerable<AFSTask<T>>) tasks);
 	}
 
-	public static async AFSTask WhenAny(IEnumerable<AFSTask> tasks)
+
+	public static async AFSTask<AFSTask> WhenAny(params AFSTask[] tasks)
+	{
+		return await WhenAny((IEnumerable<AFSTask>) tasks);
+	}
+
+	public static async AFSTask<AFSTask> WhenAny(IEnumerable<AFSTask> tasks)
 	{
 		ArgumentNullException.ThrowIfNull(tasks);
-
 		var taskList = tasks.ToList();
-		if (taskList.Count == 0)
-		{
-			throw new ArgumentException("The tasks collection is empty.", nameof(tasks));
-		}
-		
-		var tcs = new TaskCompletionSource<AFSTask>(TaskCreationOptions.RunContinuationsAsynchronously);
-
+		if (taskList.Count == 0) throw new ArgumentException("The tasks collection must contain at least one task.", nameof(tasks));
+		var tcs = new TaskCompletionSource<AFSTask>();
 		foreach (var task in taskList)
 		{
-			_ = AwaitAndSignalAsync(task, tcs);
+			_ = SignalCompletion(task, tcs);
 		}
-		
-		await tcs.Task;
-		return;
 
-		static async Task AwaitAndSignalAsync(AFSTask task, TaskCompletionSource<AFSTask> tcs)
+		return await tcs.Task;
+
+		static async Task SignalCompletion(AFSTask t, TaskCompletionSource<AFSTask> tcs)
 		{
 			try
 			{
-				await task;
-				tcs.TrySetResult(task);
+				await (Task) t;
 			}
-			catch (Exception ex)
+			catch
 			{
-				// The meaning of WhenAny is: the first "completed"
-				// including Faulted
-				tcs.TrySetException(ex);
+				// ignore exceptions because we need this Task which is entered Faulted state
 			}
+			tcs.TrySetResult(t);
 		}
 	}
 	
-	public static async AFSTask WhenAny(params AFSTask[] tasks)
+	public static async AFSTask<AFSTask<T>> WhenAny<T>(params AFSTask<T>[] tasks)
 	{
-		await WhenAny((IEnumerable<AFSTask>) tasks);
+		return await WhenAny((IEnumerable<AFSTask<T>>) tasks);
 	}
 	
-	public static async AFSTask<T> WhenAny<T>(IEnumerable<AFSTask<T>> tasks)
+	
+	public static async AFSTask<AFSTask<T>> WhenAny<T>(IEnumerable<AFSTask<T>> tasks)
 	{
 		ArgumentNullException.ThrowIfNull(tasks);
-
 		var taskList = tasks.ToList();
-		if (taskList.Count == 0)
-		{
-			throw new ArgumentException("The tasks collection is empty.", nameof(tasks));
-		}
+		if (taskList.Count == 0) throw new ArgumentException("The tasks collection must contain at least one task.", nameof(tasks));
 		
-		var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-
+		var tcs = new TaskCompletionSource<AFSTask<T>>();
+		
 		foreach (var task in taskList)
 		{
-			_ = AwaitAndSignalAsync(task, tcs);
+			_ = SignalCompletion(task, tcs);
 		}
 		
 		return await tcs.Task;
-
-		static async Task AwaitAndSignalAsync(AFSTask<T> task, TaskCompletionSource<T> tcs)
+		
+		static async Task SignalCompletion(AFSTask<T> t, TaskCompletionSource<AFSTask<T>> tcs)
 		{
 			try
 			{
-				var result = await task;
-				tcs.TrySetResult(result);
+				await (Task<T>) t;
 			}
-			catch (Exception ex)
+			catch
 			{
-				// The meaning of WhenAny is: the first "completed"
-				// including Faulted
-				tcs.TrySetException(ex);
+				// ignore exceptions because we need this Task which is entered Faulted state
 			}
+			tcs.TrySetResult(t);
 		}
 	}
 }

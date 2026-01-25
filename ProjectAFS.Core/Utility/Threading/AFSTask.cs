@@ -55,4 +55,12 @@ public readonly partial struct AFSTask
 			_task.GetAwaiter().GetResult();
 		}
 	}
+	
+	
+	public static bool operator ==(AFSTask left, AFSTask right) => Equals(left._task, right._task);
+	public static bool operator !=(AFSTask left, AFSTask right) => !Equals(left._task, right._task);
+
+	public override bool Equals(object? obj) => obj is AFSTask other && Equals(other);
+	public bool Equals(AFSTask other) => Equals(_task, other._task);
+	public override int GetHashCode() => _task != null ? _task.GetHashCode() : 0;
 }

@@ -1,10 +1,9 @@
-﻿using Avalonia;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
-using Avalonia.Themes.Fluent;
+using Avalonia.Markup.Xaml;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ProjectAFS.Core.Abstracts.Services.Extensibility;
 using ProjectAFS.Core.Services.Startup;
 using ProjectAFS.Core.Utility.Hosting;
 using ProjectAFS.Core.Utility.Threading;
@@ -15,13 +14,26 @@ namespace ProjectAFS.Core;
 public sealed class AFSApp : Application
 {
 	public List<Type> BuiltInPlugins { get; }
+
+	/// <summary>
+	/// Gets the main window of the application.<br />
+	/// <b>Note:</b> This property may be changed as it represents the window responsible for the 'current main window' role in the application lifetime.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Thrown if the main window is not set.</exception>
+	public TopLevel? MainWindow => _mainWindowCache;
 	private IHost? _host;
+	private TopLevel? _mainWindowCache;
 	
 	/// <summary>
 	/// Fetches a service of type <typeparamref name="T"/> from the generic host's service provider.
 	/// </summary>
 	/// <param name="serviceType">The type of the service to fetch.</param>
 	public object this[Type serviceType] => FetchService(serviceType);
+
+	public AFSApp()
+	{
+		BuiltInPlugins = [];
+	}
 	
 	public AFSApp(params Type[] builtInPlugins)
 	{
@@ -30,7 +42,7 @@ public sealed class AFSApp : Application
 	
 	public override void Initialize()
 	{
-		Styles.Add(new FluentTheme());
+		AvaloniaXamlLoader.Load(this);
 	}
 	
 	public override void OnFrameworkInitializationCompleted()
@@ -165,6 +177,16 @@ public sealed class AFSApp : Application
 			throw new InvalidOperationException("Generic host is not initialized. Please start generic host first.");
 		}
 		return ActivatorUtilities.CreateInstance(_host.Services, implementationType, parameters);
+	}
+	
+	public void BindAsMainWindow<T>(T window) where T : Window
+	{
+		if (ApplicationLifetime is not IClassicDesktopStyleApplicationLifetime desktop)
+		{
+			throw new InvalidOperationException("Application lifetime is not Classic Desktop Style. Cannot bind main window.");
+		}
+		_mainWindowCache = window;
+		desktop.MainWindow = window;
 	}
 	
 	private object FetchService(Type serviceType)

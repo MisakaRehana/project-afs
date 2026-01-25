@@ -1,5 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace ProjectAFS.Core.Utility.Hosting;
 
@@ -86,5 +88,18 @@ public static class DependencyInjectionExtension
 		{
 			return builder.AddSingleService<TService, TImplementation>(service, ServiceLifetime.Transient);
 		}
+	}
+}
+
+public static class LoggerExtension
+{
+	public static ILogger<T> CreateDummyLogger<T>()
+	{
+		return NullLogger<T>.Instance;
+	}
+	
+	public static ILogger CreateDummyLogger()
+	{
+		return NullLogger.Instance;
 	}
 }

@@ -42,6 +42,7 @@ public sealed partial class WinSplash : Window
 	public WinSplash(AFSApp app, IApplicationLifetime lifetime, ILogger<WinSplash> logger, II18nService i18n)
 	{
 		_app = app;
+		_app.BindAsMainWindow(this);
 		_lifetime = lifetime;
 		_logger = logger;
 		_i18n = i18n;

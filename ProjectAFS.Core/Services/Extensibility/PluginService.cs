@@ -12,10 +12,10 @@ using ProjectAFS.Core.Models.Extensibility;
 using ProjectAFS.Core.Models.Globalization;
 using ProjectAFS.Core.Models.Startup;
 using ProjectAFS.Core.Services.Startup;
-using ProjectAFS.Core.Utility.SharpCompress;
-using ProjectAFS.Core.Utility.Threading;
 using ProjectAFS.Core.Utility.Collections;
+using ProjectAFS.Core.Utility.SharpCompress;
 using ProjectAFS.Core.Utility.Strings;
+using ProjectAFS.Core.Utility.Threading;
 using SharpCompress.Archives.Zip;
 using SVersion = SemanticVersioning.Version;
 
@@ -334,7 +334,7 @@ public sealed partial class PluginService : IHostedService, IPluginService
 	{
 		try
 		{
-			var section = _config.GetSection("Plugins");
+			var section = _config.GetSection("Core.Plugins");
 			if (section.Settings.TryGetValue("EnabledPlugins", out string? json) && !string.IsNullOrEmpty(json))
 			{
 				var enabledPlugins = JsonConvert.DeserializeObject<List<string>>(json);
@@ -359,7 +359,7 @@ public sealed partial class PluginService : IHostedService, IPluginService
 		try
 		{
 			string json = JsonConvert.SerializeObject(_enabledPlugins, Formatting.Indented);
-			var section = _config.GetSection("Plugins");
+			var section = _config.GetSection("Core.Plugins");
 			section.Settings["EnabledPlugins"] = json;
 			_config.Save(section);
 		}

@@ -1,5 +1,6 @@
 // ReSharper disable MemberCanBeProtected.Global
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -45,5 +46,15 @@ public sealed class DesignPgeHomeViewModel : PgeHomeViewModel
 			new RecentProjectItem() {Title = "Sample Project 3", SolutionFilePath = @"C:\Path\To\SampleProject3.afsln"},
 			new RecentProjectItem() {Title = "Sample Project 4", SolutionFilePath = @"C:\Path\To\SampleProject4.afsln"}
 		];
+	}
+
+	protected override void Prev()
+	{
+		Debug.WriteLine("[Design Mode] No operation for Prev command in design-time.");
+	}
+	
+	protected override void Next()
+	{
+		Debug.WriteLine("[Design Mode] No operation for Next command in design-time.");
 	}
 }

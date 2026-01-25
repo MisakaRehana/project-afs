@@ -3,8 +3,8 @@ using HarmonyLib;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ProjectAFS.Core.Abstracts.Services.AFSChan;
-using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Abstracts.Services.Configuration;
+using ProjectAFS.Core.Abstracts.Services.Globalization;
 using ProjectAFS.Core.Models.Globalization;
 using ProjectAFS.Core.Utility.Threading;
 

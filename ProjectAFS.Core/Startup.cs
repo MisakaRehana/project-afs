@@ -14,6 +14,7 @@ public static class Startup
 		services.AddAFSChan(); // must add before I18n to allow AFSChan to localize its messages by AOP patching
 		services.AddI18n(); // this will enable globalization support (all services after this are able to display localized splash loading messages)
 		services.AddStartupBootstrap(); // this will awake splash screen
+		services.AddStorageProvider(); // allow other modules to use storage service since startup
 		services.AddPlugins(); // first plugin installer service, then plugin service itself (this will exec pending plugin operations, then load plugins) [UI Notificable]
 		services.Complete();
 	}

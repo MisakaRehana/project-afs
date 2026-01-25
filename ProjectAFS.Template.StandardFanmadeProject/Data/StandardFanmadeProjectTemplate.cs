@@ -30,7 +30,7 @@ public sealed class StandardFanmadeProjectTemplate : IProjectTemplate
 		English = DescriptionEnglish, Japanese = DescriptionJapanese, ChineseSimplified = DescriptionCHS, ChineseTraditional = DescriptionCHT
 	};
 	public string Identifier => "ProjectAFS.Template.StandardFanmadeProject";
-	public IEnumerable<ProjectPlatformType> SupportedPlatforms => [ProjectPlatformType.Client];
+	public IEnumerable<ProjectPlatformType> SupportedPlatforms => [ProjectPlatformType.Client, ProjectPlatformType.Android, ProjectPlatformType.IOS];
 
 	public ProjectCreationContext GetDefaultCreationContext()
 	{

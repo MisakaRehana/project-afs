@@ -6,6 +6,10 @@
 			"value": "Initializing project-afs ({curr}/{total})",
 			"value_c": "Waking up AFS-Chan... still a bit sleepy... ({curr}/{total})"
 		},
+		"splash.init.core.storage": {
+			"value": "Initializing storage system ({curr}/{total})",
+			"value_c": "Opening the locker and taking out today's items~ ({curr}/{total})"
+		},
 		"splash.init.plugin.pending.install": {
 			"value": "Installing plugin {pluginId} ({curr}/{total})",
 			"value_c": "Welcome aboard, {pluginId}! ({curr}/{total})"
@@ -45,6 +49,45 @@
 		},
 		"welcome.skip": {
 			"value": "Continue without fanmade"
+		},
+		"welcome.new_project.title": {
+			"value": "Create New Project"
+		},
+		"welcome.new_project.recent_templates": {
+			"value": "Select a recently used template"
+		},
+		"welcome.new_project.search_templates": {
+			"value": "Search templates (Alt+S)"
+		},
+		"ui.common.button.prev": {
+			"value": "Back"
+		},
+		"ui.common.button.next": {
+			"value": "Next"
+		},
+		"welcome.config_project.title": {
+			"value": "Configure New Project"
+		},
+		"welcome.config_project.project_name": {
+			"value": "Project Name"
+		},
+		"welcome.config_project.location": {
+			"value": "Location"
+		},
+		"welcome.config_project.solution_name": {
+			"value": "Solution Name"
+		},
+		"welcome.config_project.place_same_directory": {
+			"value": "Place solution and project in the same directory"
+		},
+		"welcome.config_project.create_hint": {
+			"value": "Project will be created in \"{location}\""
+		},
+		"welcome.config_project.create_hint.solution": {
+			"value": "Solution will be created in \"{location}\""
+		},
+		"welcome.config_project.button.create": {
+			"value": "Create"
 		},
 		"ui.menu.file": {
 			"value": "File"

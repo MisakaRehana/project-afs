@@ -8,8 +8,8 @@
         mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
         x:Class="ProjectAFS.Shell.Desktop.UI.Windows.WinMain"
         WindowState="Maximized"
-        FontFamily="cjkFonts 全瀨體, SetoFont, Noto Sans CJK SC, Microsoft YaHei UI, Segoe UI, sans-serif"
         Closing="Window_OnClosing"
+        FontFamily="{StaticResource GlobalFontFamily}"
         Title="project-afs">
 	<Window.DataContext>
 		<vmb:DesignMainViewModel />

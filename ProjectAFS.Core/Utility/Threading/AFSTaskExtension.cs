@@ -112,4 +112,44 @@ public static class AFSTaskExtension
 			logger?.LogError(ex, "An unobserved exception occurred in a forgotten AFSTask<T>.");
 		}
 	}
+
+	/// <summary>
+	/// Attach an external cancellation token to an <see cref="AFSTask"/>.
+	/// If the token is canceled before the task completes, the returned task will be canceled and throw a <see cref="OperationCanceledException"/>.
+	/// </summary>
+	/// <param name="task">The original <see cref="AFSTask"/>.</param>
+	/// <param name="cancellationToken">The external <see cref="CancellationToken"/> to attach.</param>
+	/// <returns>A new <see cref="AFSTask"/> that respects the external cancellation request.</returns>
+	public static async AFSTask AttachExternalCancellation(this AFSTask task, CancellationToken cancellationToken)
+	{
+		cancellationToken.ThrowIfCancellationRequested();
+		
+		var cancellationTask = AFSTask.Delay(Timeout.Infinite, cancellationToken);
+		var completedTask = await AFSTask.WhenAny(task, cancellationTask);
+		if (completedTask == cancellationTask)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+		}
+		
+		await task;
+	}
+	
+	public static async AFSTask<T> AttachExternalCancellation<T>(this AFSTask<T> task, CancellationToken cancellationToken)
+	{
+		cancellationToken.ThrowIfCancellationRequested();
+		
+		// var cancellationTask = AFSTask.Delay(Timeout.Infinite, cancellationToken);
+		var cancellationTask = AFSTask.Create(async () =>
+		{
+			await AFSTask.Delay(Timeout.Infinite, cancellationToken);
+			return default(T)!;
+		});
+		var completedTask = await AFSTask.WhenAny(task, cancellationTask);
+		if (completedTask == cancellationTask)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+		}
+		
+		return await task;
+	}
 }

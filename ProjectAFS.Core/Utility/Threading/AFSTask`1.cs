@@ -52,4 +52,10 @@ public readonly struct AFSTask<T>
 			return _task.GetAwaiter().GetResult();
 		}
 	}
+	
+	public static bool operator ==(AFSTask<T> left, AFSTask<T> right) => Equals(left._task, right._task);
+	public static bool operator !=(AFSTask<T> left, AFSTask<T> right) => !Equals(left._task, right._task);
+	public override bool Equals(object? obj) => obj is AFSTask<T> task && Equals(_task, task._task);
+	public bool Equals(AFSTask<T> other) => Equals(_task, other._task);
+	public override int GetHashCode() => _task != null ? _task.GetHashCode() : 0;
 }

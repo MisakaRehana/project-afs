@@ -1,0 +1,29 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Design.PreviewWith>
+		<Border Padding="20">
+			<TextBlock TextWrapping="Wrap">
+				The quick brown fox jumps over the lazy dog.<LineBreak />
+				いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせす<LineBreak />
+				我能吞下玻璃而不伤身体。<LineBreak />
+				我能吞下玻璃而不傷身體。<LineBreak />
+				<LineBreak />
+				<![CDATA[C:\Program Files\ProjectAFS\project-afs.exe]]><LineBreak />
+				<![CDATA[/usr/local/bin/project-afs]]><LineBreak />
+				<![CDATA[~/Documents/ProjectAFS/Projects/新项目/]]>
+			</TextBlock>
+		</Border>
+	</Design.PreviewWith>
+	
+	<Styles.Resources>
+		<FontFamily x:Key="GlobalFontFamily">
+			cjkFonts 全瀨體, SetoFont, Microsoft YaHei UI, Noto Sans CJK SC, Segoe UI, sans-serif
+		</FontFamily>
+	</Styles.Resources>
+
+	<Style Selector="TextBlock"><!-- TextBlock is directly inherited from Control; all other common components using TextBlock as their inner text presenter -->
+		<Setter Property="FontFamily" Value="{StaticResource GlobalFontFamily}" />
+	</Style>
+	<Style Selector="TextBox">
+		<Setter Property="FontFamily" Value="{StaticResource GlobalFontFamily}" />
+	</Style>
+</Styles>

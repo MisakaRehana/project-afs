@@ -26,6 +26,7 @@ public partial class WinMain : Window
 	{
 		InitializeComponent();
 		_app = app;
+		_app.BindAsMainWindow(this);
 		DataContext = _app.CreateInstanceWithInjection<MainViewModel>();
 	}
 	

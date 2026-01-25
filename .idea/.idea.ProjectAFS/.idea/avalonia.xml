@@ -3,8 +3,12 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="ProjectAFS.Core/AFSApp.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Core/UI/WinSplash.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Core/Windows/WinSplash.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Resources/Framework/Styles/GlobalFonts.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Resources/Framework/Styles/PathTextFonts.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
+        <entry key="ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeConfigProject.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeHome.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeNewProject.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />
         <entry key="ProjectAFS.Shell.Desktop/UI/Pages/Welcome/PgeWelcomeHome.axaml" value="ProjectAFS.Launcher.Desktop/ProjectAFS.Launcher.Desktop.csproj" />

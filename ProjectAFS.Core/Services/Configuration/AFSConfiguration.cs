@@ -19,6 +19,12 @@ public class AFSConfiguration : IAFSConfiguration
 		_lockObject = new object();
 		LoadConfiguration();
 	}
+	
+	protected AFSConfiguration(params IAFSConfigSection[] initialSections)
+	{
+		_sections = initialSections.ToList();
+		_lockObject = new object();
+	}
 
 	private void LoadConfiguration()
 	{
@@ -126,5 +132,12 @@ public class AFSConfiguration : IAFSConfiguration
 		}
 
 		throw new PlatformNotSupportedException("Unsupported operating system.");
+	}
+}
+
+public sealed class DesignAFSConfiguration : AFSConfiguration
+{
+	public DesignAFSConfiguration() : base([])
+	{
 	}
 }

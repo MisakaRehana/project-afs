@@ -24,6 +24,18 @@ public sealed class StartupProgressProxy : IProgress<StartupProgressProxy>
 		});
 	}
 	
+	public async AFSTask ReportAsync(StartupProgressReport value, CancellationToken cancellationToken = default)
+	{
+		await AFSTask.Create(async () =>
+		{
+			await Dispatcher.UIThread.InvokeAsync(() =>
+			{
+				if (_splash == null) return;
+				_splash.UpdateProgress(value);
+			});
+		}).AttachExternalCancellation(cancellationToken);
+	}
+	
 	public void Report(StartupProgressProxy value)
 	{
 		// No implementation needed

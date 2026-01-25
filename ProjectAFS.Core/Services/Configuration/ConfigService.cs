@@ -6,6 +6,7 @@ namespace ProjectAFS.Core.Services.Configuration;
 
 public sealed class ConfigService : IHostedService, IConfigService
 {
+	public IAFSConfiguration Configuration => _configuration;
 	private readonly IAFSConfiguration _configuration;
 	
 	public ConfigService(IAFSConfiguration configuration) // Dependency Injection
@@ -23,4 +24,9 @@ public sealed class ConfigService : IHostedService, IConfigService
 		_configuration.SaveAll();
 		await AFSTask.CompletedTask;
 	}
+}
+
+public sealed class DesignConfigService : IConfigService
+{
+	public IAFSConfiguration Configuration { get; } = new DesignAFSConfiguration();
 }

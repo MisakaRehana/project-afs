@@ -17,21 +17,21 @@ public abstract partial class PageViewModelBase : ObservableObject
 	}
 	
 	[RelayCommand]
-	public virtual void Prev()
+	protected virtual void Prev()
 	{
 		
 	}
 
 
 	[RelayCommand(CanExecute = nameof(CanGoNext))]
-	public virtual void Next()
+	protected virtual void Next()
 	{
 		
 	}
 	
-	protected void NavigateToPage<TPageVM>() where TPageVM : ObservableObject
+	protected void NavigateToPage<TPageVM>(bool cache = true, params object[] args) where TPageVM : ObservableObject
 	{
 		if (Design.IsDesignMode) return;
-		_frame.NavigateToPage<TPageVM>();
+		_frame.NavigateToPage<TPageVM>(cache, args);
 	}
 }

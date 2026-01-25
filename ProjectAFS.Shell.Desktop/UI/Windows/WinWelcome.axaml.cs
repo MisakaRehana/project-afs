@@ -31,6 +31,7 @@ public partial class WinWelcome : Window
 	{
 		InitializeComponent();
 		_app = app;
+		_app.BindAsMainWindow(this);
 		DataContext = _app.CreateInstanceWithInjection<WelcomeViewModel>(this);
 		ShouldShutdown = true;
 		blockClosing = true;

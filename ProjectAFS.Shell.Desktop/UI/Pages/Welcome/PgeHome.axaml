@@ -8,11 +8,14 @@
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
              x:Class="ProjectAFS.Shell.Desktop.UI.Pages.Welcome.PgeHome"
              x:DataType="vm:PgeHomeViewModel"
-             FontFamily="cjkFonts 全瀨體, SetoFont, Noto Sans CJK SC, Microsoft YaHei UI, Segoe UI, sans-serif">
+             FontFamily="{StaticResource GlobalFontFamily}">
     
     <Design.DataContext>
         <vm:DesignPgeHomeViewModel />
     </Design.DataContext>
+    <UserControl.Styles>
+        <Style Selector="TextBlock.PathText" /> <!-- Make IntelliSense shut up - it is included in AFSApp Application-level styles -->
+    </UserControl.Styles>
 
     <Grid RowDefinitions="Auto, *">
         <TextBlock Grid.Row="0" Text="project-afs"
@@ -43,7 +46,7 @@
                             <Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Left">
                                 <StackPanel>
                                     <TextBlock Text="{Binding Title}" FontSize="16" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding SolutionFilePath}" FontSize="12" />
+                                    <TextBlock Text="{Binding SolutionFilePath}" FontSize="12" Classes="PathText" />
                                 </StackPanel>
                             </Button>
                         </DataTemplate>
